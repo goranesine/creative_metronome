@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import 'package:flutter/services.dart';
 void main() {
   runApp(MyApp());
 }
@@ -8,7 +8,9 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]);
     return MaterialApp(
+
       title: 'Flutter Demo',
       theme: ThemeData(
         // This is the theme of your application.
@@ -23,6 +25,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: MyHomePage(title: 'Flutter Demo Home Page'),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
@@ -156,6 +159,14 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 
   _gridItemTapped(int x, int y) {
-    print(gridState[x][y]);
+    int tappedNumber = gridState[x][y];
+    List<int>  tappedNumbers = [];
+    setState(() {
+
+      tappedNumbers.add(tappedNumber);
+
+    });
+    print(tappedNumbers);
   }
 }
+
