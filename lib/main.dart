@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: [SystemUiOverlay.bottom]);
     return GetMaterialApp(
-      title: 'Flutter Demo',
+      title: 'Math game',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),

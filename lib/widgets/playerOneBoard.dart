@@ -67,7 +67,7 @@ class PlayerOneBoard extends StatelessWidget {
     x = (index / gridStateLength).floor();
     y = (index % gridStateLength);
     return GestureDetector(
-      onTap: () => _gridItemTapped(x, y),
+      onTap: ()=> playerOneGameModel.addTappedNumberToList(x,y),
       child: Container(
         //  width: MediaQuery.of(context).size.width / 5,
         //    height: MediaQuery.of(context).size.height -
@@ -111,12 +111,5 @@ class PlayerOneBoard extends StatelessWidget {
     }
   }
 
-  _gridItemTapped(int x, int y) {
-    int tappedNumber = PlayerOneGameModel().gridState[x][y];
-    List<int> tappedNumbers = [];
 
-    tappedNumbers.add(tappedNumber);
-
-    print(tappedNumbers);
-  }
 }
