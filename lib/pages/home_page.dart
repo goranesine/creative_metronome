@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:math_game/pages/test_page.dart';
+import 'package:math_game/widgets/brick.dart';
 import 'package:math_game/widgets/playerOneBoard.dart';
 
 import 'game_page.dart';

@@ -5,6 +5,8 @@ import 'package:math_game/models/player_one_game_model.dart';
 import 'package:math_game/pages/home_page.dart';
 import 'package:math_game/widgets/playerOneBoard.dart';
 
+import 'models/player_one_game_model2.dart';
+
 void main() {
   Get.put(PlayerOneGameModel());
   runApp(MyApp());
