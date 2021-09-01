@@ -45,8 +45,8 @@ Widget _buildGridItems(BuildContext context, int index) {
     decoration:
     BoxDecoration(border: Border.all(color: Colors.black, width: 0.5)),
     child: Center(
-      child: Brick(backColor: playerOneGameModel.listColors[index] ,column: x,row: y),
-    ),
+      child:Brick(backColor: playerOneGameModel.listColors[index][0] ,index: index,row: y,)),
+
   );
 }
 

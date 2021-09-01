@@ -5,12 +5,12 @@ import 'package:math_game/models/player_one_game_model.dart';
 
 class Brick extends StatefulWidget {
   final String backColor;
-  final int column;
+  final int index;
 
   final int row;
 
   const Brick(
-      {required this.backColor, required this.column, required this.row});
+      {required this.backColor, required this.index, required this.row});
 
   @override
   State<StatefulWidget> createState() => _BrickState();
@@ -18,26 +18,42 @@ class Brick extends StatefulWidget {
 
 class _BrickState extends State<Brick> {
   final playerOneGameModel = Get.find<PlayerOneGameModel>();
-
+double _opacity = 1.0;
   bool canChangeColor = true;
   final Color frontColor = Colors.redAccent;
-  bool isTapped = false;
-
 
   @override
   Widget build(BuildContext context) {
+    //  String _isTapped = playerOneGameModel.listColors[widget.index][1];
+    // bool isTapped = _isTapped == "false" ? false : true;
     // TODO: implement build
-    return GestureDetector(
-      onTap: () => setState(() {
-        if (canChangeColor == true) {
-          isTapped == false ? isTapped = true : isTapped = false;
-          canChangeColor = false;
-          playerOneGameModel.numberOffTappedTimes;
-        } else {}
-      }),
-      child: Container(
-        color: isTapped == true ? HexColor(widget.backColor) : frontColor,
+    return  GestureDetector(
+        onTap: () => setState(() {
+          if (canChangeColor == true) {
+            String _isTapped = playerOneGameModel.listColors[widget.index][1];
+            bool isTapped = _isTapped == "false" ? false : true;
+            if (isTapped == false) {
+              playerOneGameModel.listColors[widget.index][1] = "true";
+              canChangeColor = false;
+              playerOneGameModel.increaseNumberOffTappedTimes(widget.index, 0);
+            }
+          } else {
+setState(() {
+  _opacity = playerOneGameModel.listColors[widget.index].length < 2 ? 0.0 : 1.0;
+});          }
+        }),
+        child:
+
+          Opacity(
+
+            opacity: _opacity,
+            child: Container(
+              color:
+                  canChangeColor == false ? HexColor(widget.backColor) : frontColor,
+
+
       ),
+          ),
     );
   }
 }
