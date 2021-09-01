@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:collection/collection.dart';
 
 class PlayerOneGameModel extends GetxController {
-  final List<List<String>> listColors = [
+  final RxList<List<String>> listColors = [
     ["#c500bd", "false"],
     ["#000066", "false"],
     ["#494a65", "false"],
@@ -37,15 +37,26 @@ class PlayerOneGameModel extends GetxController {
   String colorOne = "";
   String colorTwo = "";
   String colorThree = "";
-final String whiteColor ="#FFFFFF";
+  RxBool isColorMatched = false.obs;
+  final String whiteColor = "#FFFFFF";
+
   void stopGame(int x, int y) {
-    for (var i = 0; listColors.length > i; i++) {
-      listColors[i][1] = "true";
-    }
-    checkIfColorsAreMatched();
+   // newMove();
+
+  }
+
+  void newMove(){
+    numberOffTappedTimes = 0;
+    listOffTappedColors.clear();
+    temp.clear();
+    isColorMatched.value = false;
+
+
+
   }
 
   void checkIfColorsAreMatched() {
+    if(listOffTappedColors.length == 3){
     for (var i = 0; 3 > i; i++) {
       temp.add(listOffTappedColors[i]);
     }
@@ -54,17 +65,15 @@ final String whiteColor ="#FFFFFF";
     colorThree = listColors[temp[2][0]].first;
 
     if (colorOne == colorTwo && colorOne == colorThree) {
-      print("Same colors color1 $colorOne");
+      isColorMatched.value = true;
+      print("Same colors ");
       for (var i = 0; listColors.length > i; i++) {
-        listColors[i].remove(colorOne);
-      }
-      for (var i = 0; listColors.length > i; i++) {
-        listColors[i].remove(colorTwo);
-      }
-      for (var i = 0; listColors.length > i; i++) {
-        listColors[i].remove(colorThree);
-      }
-      print("list color : $listColors");
+        if (listColors[i][0] == colorOne && listColors[i][1] == "true") {
+          listColors[i][0] = whiteColor;
+        }
+        update();
+      }}
+      print("$listColors");
     } else {}
   }
 
@@ -79,5 +88,6 @@ final String whiteColor ="#FFFFFF";
     addTappedColorToList(x, y);
     numberOffTappedTimes++;
     numberOffTappedTimes >= 3 ? stopGame(x, y) : null;
+    checkIfColorsAreMatched();
   }
 }

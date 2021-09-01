@@ -24,10 +24,14 @@ double _opacity = 1.0;
 
   @override
   Widget build(BuildContext context) {
+    _opacity = playerOneGameModel.listColors[widget.index][0] == "#FFFFFF" ? 0.0 : 1.0;
+
     //  String _isTapped = playerOneGameModel.listColors[widget.index][1];
     // bool isTapped = _isTapped == "false" ? false : true;
     // TODO: implement build
-    return  GestureDetector(
+    return
+
+      GestureDetector(
         onTap: () => setState(() {
           if (canChangeColor == true) {
             String _isTapped = playerOneGameModel.listColors[widget.index][1];
@@ -38,21 +42,16 @@ double _opacity = 1.0;
               playerOneGameModel.increaseNumberOffTappedTimes(widget.index, 0);
             }
           } else {
-setState(() {
-  _opacity = playerOneGameModel.listColors[widget.index].length < 2 ? 0.0 : 1.0;
-});          }
+        }
         }),
         child:
 
-          Opacity(
-
-            opacity: _opacity,
-            child: Container(
+           Container(
               color:
                   canChangeColor == false ? HexColor(widget.backColor) : frontColor,
 
 
-      ),
+
           ),
     );
   }
