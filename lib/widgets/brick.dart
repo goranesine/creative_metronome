@@ -19,7 +19,7 @@ class Brick extends StatefulWidget {
 class _BrickState extends State<Brick> {
   final playerOneGameModel = Get.find<PlayerOneGameModel>();
 double _opacity = 1.0;
-  bool canChangeColor = true;
+  bool showInitColor = true;
   final Color frontColor = Colors.redAccent;
 
   @override
@@ -33,22 +33,26 @@ double _opacity = 1.0;
 
       GestureDetector(
         onTap: () => setState(() {
-          if (canChangeColor == true) {
+          if (showInitColor == true) {
             String _isTapped = playerOneGameModel.listColors[widget.index][1];
             bool isTapped = _isTapped == "false" ? false : true;
             if (isTapped == false) {
               playerOneGameModel.listColors[widget.index][1] = "true";
-              canChangeColor = false;
+              showInitColor = false;
               playerOneGameModel.increaseNumberOffTappedTimes(widget.index, 0);
             }
           } else {
+            if(playerOneGameModel.endOffTurn.value == true){
+               showInitColor = true;
+
+            }
         }
         }),
         child:
 
            Container(
               color:
-                  canChangeColor == false ? HexColor(widget.backColor) : frontColor,
+                  showInitColor == true ? frontColor : HexColor(widget.backColor),
 
 
 

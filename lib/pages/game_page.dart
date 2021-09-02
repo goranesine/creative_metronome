@@ -44,7 +44,7 @@ Widget _buildGridItems(BuildContext context, int index) {
               builder: (_)=>
                Opacity(
                     opacity:
-                    _.listColors[index][0] == "#FFFFFF" ? 0.0 : 1.0,
+                    _.listColors[index][0] == "#FFFFFF"  ? 0.0 : 1.0,
                     child:  Brick(
           backColor: playerOneGameModel.listColors[index][0],
           index: index,

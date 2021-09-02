@@ -37,44 +37,70 @@ class PlayerOneGameModel extends GetxController {
   String colorOne = "";
   String colorTwo = "";
   String colorThree = "";
-  RxBool isColorMatched = false.obs;
+  RxBool colorNotMatched = false.obs;
   final String whiteColor = "#FFFFFF";
+  RxBool endOffTurn = false.obs;
 
   void stopGame(int x, int y) {
-   // newMove();
-
+    // newMove();
   }
 
-  void newMove(){
+  void newMoveAfterColorMatched() {
     numberOffTappedTimes = 0;
     listOffTappedColors.clear();
     temp.clear();
-    isColorMatched.value = false;
+    colorNotMatched.value = false;
+    endOffTurn.value = false;
+  }
 
+  void newMoveAfterColorNotMatched() {
+    numberOffTappedTimes = 0;
+    listOffTappedColors.clear();
+    temp.clear();
+    colorNotMatched.value = false;
+  //  endOffTurn.value = false;
+  }
 
-
+  void callCheckIfColorsAreMatched() {
+    if (listOffTappedColors.length == 3) {
+      checkIfColorsAreMatched();
+    }
   }
 
   void checkIfColorsAreMatched() {
-    if(listOffTappedColors.length == 3){
-    for (var i = 0; 3 > i; i++) {
-      temp.add(listOffTappedColors[i]);
-    }
-    colorOne = listColors[temp[0][0]].first;
-    colorTwo = listColors[temp[1][0]].first;
-    colorThree = listColors[temp[2][0]].first;
+    if (listOffTappedColors.length == 3) {
+      for (var i = 0; 3 > i; i++) {
+        temp.add(listOffTappedColors[i]);
+      }
+      colorOne = listColors[temp[0][0]].first;
+      colorTwo = listColors[temp[1][0]].first;
+      colorThree = listColors[temp[2][0]].first;
 
-    if (colorOne == colorTwo && colorOne == colorThree) {
-      isColorMatched.value = true;
-      print("Same colors ");
-      for (var i = 0; listColors.length > i; i++) {
-        if (listColors[i][0] == colorOne && listColors[i][1] == "true") {
-          listColors[i][0] = whiteColor;
+      if (colorOne == colorTwo && colorOne == colorThree) {
+        endOffTurn.value = true;
+        print("Same colors ");
+        for (var i = 0; listColors.length > i; i++) {
+          if (listColors[i][0] == colorOne && listColors[i][1] == "true") {
+            listColors[i][0] = whiteColor;
+          }
+          endOffTurn.value = true;
+          update();
+          newMoveAfterColorMatched();
         }
+      } else {
+        print("Different colors ");
+
+        colorNotMatched.value = true;
+        for (var i = 0; listColors.length > i; i++) {
+          listColors[i][1] = "false";
+        }
+        endOffTurn.value = true;
+
         update();
-      }}
+        newMoveAfterColorNotMatched();
+      }
       print("$listColors");
-    } else {}
+    }
   }
 
   void removeMatchedColorsFromList() {}
@@ -88,6 +114,6 @@ class PlayerOneGameModel extends GetxController {
     addTappedColorToList(x, y);
     numberOffTappedTimes++;
     numberOffTappedTimes >= 3 ? stopGame(x, y) : null;
-    checkIfColorsAreMatched();
+    callCheckIfColorsAreMatched();
   }
 }
