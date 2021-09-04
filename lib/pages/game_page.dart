@@ -12,7 +12,7 @@ class GamePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    int listLength = 5;
+    int listLength = 6;
     return GridView.builder(
       padding: EdgeInsetsGeometry.lerp(EdgeInsets.zero, EdgeInsets.zero, 0.0),
       physics: NeverScrollableScrollPhysics(),
@@ -28,9 +28,8 @@ class GamePage extends StatelessWidget {
 }
 
 Widget _buildGridItems(BuildContext context, int index) {
-  final playerOneGameModel = Get.find<PlayerOneGameModel>();
-
-  int gridStateLength = 5;
+  final String frontColor = "#ff0000";
+  int gridStateLength = 6;
   int x, y = 0;
   x = (index / gridStateLength).floor();
   y = (index % gridStateLength);
@@ -42,14 +41,11 @@ Widget _buildGridItems(BuildContext context, int index) {
             child: GetBuilder<PlayerOneGameModel>(
               init: PlayerOneGameModel(),
               builder: (_)=>
-               Opacity(
-                    opacity:
-                    _.listColors[index][0] == "#FFFFFF"  ? 0.0 : 1.0,
-                    child:  Brick(
-          backColor: playerOneGameModel.listColors[index][0],
+               Brick(
+          backColor: _.listColors2[index][1] == "false" ? frontColor : _.listColors2[index][0],
           index: index,
           row: y,
-        )),
+        ),
             ),
 
     ),

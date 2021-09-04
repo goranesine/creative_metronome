@@ -8,7 +8,6 @@ class Brick extends StatefulWidget {
   final int index;
 
   final int row;
-
   const Brick(
       {required this.backColor, required this.index, required this.row});
 
@@ -18,45 +17,20 @@ class Brick extends StatefulWidget {
 
 class _BrickState extends State<Brick> {
   final playerOneGameModel = Get.find<PlayerOneGameModel>();
-double _opacity = 1.0;
-  bool showInitColor = true;
-  final Color frontColor = Colors.redAccent;
 
   @override
   Widget build(BuildContext context) {
-    _opacity = playerOneGameModel.listColors[widget.index][0] == "#FFFFFF" ? 0.0 : 1.0;
+
 
     //  String _isTapped = playerOneGameModel.listColors[widget.index][1];
     // bool isTapped = _isTapped == "false" ? false : true;
     // TODO: implement build
-    return
-
-      GestureDetector(
-        onTap: () => setState(() {
-          if (showInitColor == true) {
-            String _isTapped = playerOneGameModel.listColors[widget.index][1];
-            bool isTapped = _isTapped == "false" ? false : true;
-            if (isTapped == false) {
-              playerOneGameModel.listColors[widget.index][1] = "true";
-              showInitColor = false;
-              playerOneGameModel.increaseNumberOffTappedTimes(widget.index, 0);
-            }
-          } else {
-            if(playerOneGameModel.endOffTurn.value == true){
-               showInitColor = true;
-
-            }
-        }
-        }),
-        child:
-
-           Container(
-              color:
-                  showInitColor == true ? frontColor : HexColor(widget.backColor),
-
-
-
-          ),
+    return GestureDetector(
+      onTap: ()=> playerOneGameModel.listColors2[widget.index][1] == "false"?
+          playerOneGameModel.onTap(widget.index) : null,
+      child: Container(
+        color: playerOneGameModel.listColors2[widget.index][2] == "false" ? HexColor(widget.backColor) : Colors.white ,
+      ),
     );
   }
 }
