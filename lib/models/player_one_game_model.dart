@@ -115,6 +115,15 @@ class PlayerOneGameModel extends GetxController {
   List actualColor = [].obs;
   RxBool disableTapBool = false.obs;
 
+  PlayerOneGameModel(){
+    shuffle();
+  }
+
+  void shuffle(){
+    listColors2.shuffle();
+    update();
+  }
+
   void onTap(int index) {
     if (numberOffTappedTimes < 3) {
       listOffTappedColors.add(index);
@@ -130,7 +139,14 @@ class PlayerOneGameModel extends GetxController {
   }
 
   void checkIfIsThreeTimesTapped() {
-    numberOffTappedTimes == 3 ? checkIfColorsAreMatched() : null;
+    if(listColors2.length == 0){
+      endGame();
+    }else{
+      if(numberOffTappedTimes == 3){
+        Future.delayed(const Duration(milliseconds: 500), () {checkIfColorsAreMatched();});
+      }
+    }
+
   }
 
   void disableTap() {
@@ -186,10 +202,10 @@ class PlayerOneGameModel extends GetxController {
     update();
   }
   void rebuildListAfterColorMatched(){
-    rebuildListToInit();
-     listColors2[listOffTappedColors[0]][0] = colorOne ;
-     listColors2[listOffTappedColors[1]][0] = colorTwo;
-    listColors2[listOffTappedColors[2]][0] = colorThree;
+   // rebuildListToInit();
+   //  listColors2[listOffTappedColors[0]][0] = colorOne ;
+   //  listColors2[listOffTappedColors[1]][0] = colorTwo;
+  //  listColors2[listOffTappedColors[2]][0] = colorThree;
     listColors2[listOffTappedColors[0]][1] = "true" ;
      listColors2[listOffTappedColors[1]][1] = "true";
     listColors2[listOffTappedColors[2]][1] = "true";
@@ -203,9 +219,9 @@ class PlayerOneGameModel extends GetxController {
   void rebuildListAfterColorNotMatched(){
 
    // rebuildListToInit();
-     listColors2[listOffTappedColors[0]][0] = listColorsInitState[listOffTappedColors[0]][0] ;
-     listColors2[listOffTappedColors[1]][0] = listColorsInitState[listOffTappedColors[1]][0] ;
-    listColors2[listOffTappedColors[2]][0] = listColorsInitState[listOffTappedColors[2]][0] ;
+   //  listColors2[listOffTappedColors[0]][0] = listColorsInitState[listOffTappedColors[0]][0] ;
+   //  listColors2[listOffTappedColors[1]][0] = listColorsInitState[listOffTappedColors[1]][0] ;
+   // listColors2[listOffTappedColors[2]][0] = listColorsInitState[listOffTappedColors[2]][0] ;
     listColors2[listOffTappedColors[0]][1] = "false" ;
      listColors2[listOffTappedColors[1]][1] = "false";
     listColors2[listOffTappedColors[2]][1] = "false";
@@ -220,4 +236,10 @@ class PlayerOneGameModel extends GetxController {
     numberOffTappedTimes = 0;
 
   }
+  void endGame() {
+    listColors2 = listColorsInitState;
+    update();
+  }
 }
+
+
