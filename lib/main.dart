@@ -3,7 +3,6 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:math_game/models/player_one_game_model.dart';
 import 'package:math_game/pages/home_page.dart';
-import 'package:math_game/widgets/playerOneBoard.dart';
 
 void main() {
   Get.put(PlayerOneGameModel());
@@ -15,7 +14,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
   //  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: [SystemUiOverlay.bottom]);
-    SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]);
+    SystemChrome.setEnabledSystemUIOverlays([]);
 
     return GetMaterialApp(
       title: 'Math game',

@@ -26,10 +26,10 @@ class _BrickState extends State<Brick> {
     // bool isTapped = _isTapped == "false" ? false : true;
     // TODO: implement build
     return GestureDetector(
-      onTap: ()=> playerOneGameModel.listColors2[widget.index][1] == "false"?
+      onTap: ()=> playerOneGameModel.listOffColorsAndBool[widget.index][1] == "false"?
           playerOneGameModel.onTap(widget.index) : null,
       child: Container(
-        color: playerOneGameModel.listColors2[widget.index][2] == "false" ? HexColor(widget.backColor) : Colors.white ,
+        color: playerOneGameModel.listOffColorsAndBool[widget.index][2] == "false" ? HexColor(widget.backColor) : Colors.white ,
       ),
     );
   }
