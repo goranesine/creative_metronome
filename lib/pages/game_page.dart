@@ -11,22 +11,21 @@ class GamePage extends StatelessWidget {
   GamePage() {
     playerOneGameModel.addListener(() {
       playerOneGameModel.playerOneWins.value == true
-          ? Get.off(()=>WinPage(
-              whoWin: "Player One",
-            ))
+          ? Get.off(() => WinPage(
+                whoWin: "Player One",
+              ))
           : null;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-
     return Column(
       children: [
-             PlayerOneBoard(),
-        ElevatedButton(onPressed:
-        ()=>playerOneGameModel.endGame(), child: Text("end game")),
-
+        PlayerOneBoard(),
+        ElevatedButton(
+            onPressed: () => playerOneGameModel.endGame(),
+            child: Text("end game")),
       ],
     );
   }

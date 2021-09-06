@@ -15,12 +15,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
   //  SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: [SystemUiOverlay.bottom]);
     SystemChrome.setEnabledSystemUIOverlays([]);
-
     return GetMaterialApp(
       title: 'Math game',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: ThemeData.dark(),
       home: HomePage(),
       debugShowCheckedModeBanner: false,
     );

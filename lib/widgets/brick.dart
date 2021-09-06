@@ -28,9 +28,21 @@ class _BrickState extends State<Brick> {
     return GestureDetector(
       onTap: ()=> playerOneGameModel.listOffColorsAndBool[widget.index][1] == "false"?
           playerOneGameModel.onTap(widget.index) : null,
-      child: Container(
-        color: playerOneGameModel.listOffColorsAndBool[widget.index][2] == "false" ? HexColor(widget.backColor) : Colors.white ,
+      child: AnimatedContainer(
+        //   padding:EdgeInsets.all(16.0),
+        decoration: BoxDecoration(
+            color: playerOneGameModel.listOffColorsAndBool[widget.index][2] == "false" ?
+ HexColor(widget.backColor) : Colors.white ,
+            borderRadius: BorderRadius.all(Radius.circular(20.0))),
+        duration: Duration(milliseconds: 500),
+        curve: Curves.bounceInOut,
+        width: playerOneGameModel.listOffColorsAndBool[widget.index][2] == "false" ? 100 : 0,
+        height: 100 ,
       ),
     );
   }
 }
+//Container(
+//color: playerOneGameModel.listOffColorsAndBool[widget.index][2] == "false" ?
+// HexColor(widget.backColor) : Colors.white ,
+//),
