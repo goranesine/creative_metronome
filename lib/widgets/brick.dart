@@ -8,6 +8,7 @@ class Brick extends StatefulWidget {
   final int index;
 
   final int row;
+
   const Brick(
       {required this.backColor, required this.index, required this.row});
 
@@ -20,24 +21,29 @@ class _BrickState extends State<Brick> {
 
   @override
   Widget build(BuildContext context) {
-
-
     //  String _isTapped = playerOneGameModel.listColors[widget.index][1];
     // bool isTapped = _isTapped == "false" ? false : true;
     // TODO: implement build
     return GestureDetector(
-      onTap: ()=> playerOneGameModel.listOffColorsAndBool[widget.index][1] == "false"?
-          playerOneGameModel.onTap(widget.index) : null,
+      onTap: () =>
+          playerOneGameModel.listOffColorsAndBool[widget.index][1] == "false"
+              ? playerOneGameModel.onTap(widget.index)
+              : null,
       child: AnimatedContainer(
         //   padding:EdgeInsets.all(16.0),
         decoration: BoxDecoration(
-            color: playerOneGameModel.listOffColorsAndBool[widget.index][2] == "false" ?
- HexColor(widget.backColor) : Colors.white ,
+            color: playerOneGameModel.listOffColorsAndBool[widget.index][2] ==
+                    "false"
+                ? HexColor(widget.backColor)
+                : Colors.white,
             borderRadius: BorderRadius.all(Radius.circular(20.0))),
         duration: Duration(milliseconds: 500),
         curve: Curves.bounceInOut,
-        width: playerOneGameModel.listOffColorsAndBool[widget.index][2] == "false" ? 100 : 0,
-        height: 100 ,
+        width:
+            playerOneGameModel.listOffColorsAndBool[widget.index][2] == "false"
+                ? 100
+                : 0,
+        height: 100,
       ),
     );
   }
