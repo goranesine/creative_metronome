@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:math_game/models/player_one_game_model.dart';
 import 'package:math_game/pages/game_page.dart';
+import 'package:math_game/pages/home_page.dart';
 
 class WinPage extends StatelessWidget{
   final String whoWin;
@@ -17,7 +18,7 @@ class WinPage extends StatelessWidget{
           child: Text("Winner is : $whoWin"),
 
         ),
-        ElevatedButton(onPressed:()=> Get.off(()=> GamePage()), child: Text("Play again?"))],
+        ElevatedButton(onPressed:()=> Get.off(()=> HomePage()), child: Text("Play again?"))],
 
     );
   }

@@ -57,13 +57,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.2.0"
-  flip_card:
+  fbutton_nullsafety:
     dependency: "direct main"
     description:
-      name: flip_card
+      name: fbutton_nullsafety
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "0.5.0"
+    version: "5.0.0"
+  fcontrol_nullsafety:
+    dependency: transitive
+    description:
+      name: fcontrol_nullsafety
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "2.0.0"
   flutter:
     dependency: "direct main"
     description: flutter
