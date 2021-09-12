@@ -1,14 +1,9 @@
 import 'package:get/get.dart';
 import 'package:collection/collection.dart';
 
-class BrickModel {
-  int brickIndex = 0;
-  List<String> colorAndIsTapped = [];
 
-  BrickModel({required this.brickIndex, required this.colorAndIsTapped});
-}
 
-class PlayerOneGameModel extends GetxController {
+class PlayerTwoGameModel extends GetxController {
 
 
   RxList<List<String>> listOffColorsAndBool = [
@@ -55,12 +50,11 @@ class PlayerOneGameModel extends GetxController {
   String colorOne = "";
   String colorTwo = "";
   String colorThree = "";
-  RxBool playerOneWins = false.obs;
-  RxString currentTappedColor = "0".obs;
-
+  RxBool playerTwoWins = false.obs;
+ RxString currentTappedColor = "0".obs;
 //  RxBool disableTapBool = false.obs;
 
-  PlayerOneGameModel() {
+  PlayerTwoGameModel() {
     shuffle();
   }
 
@@ -72,7 +66,6 @@ class PlayerOneGameModel extends GetxController {
   void onTap(int index) {
     if (numberOffTappedTimes < 3) {
       currentTappedColor.value = listOffColorsAndBool[index][0];
-
       listOffTappedColors.add(index);
       numberOffTappedTimes++;
       listOffColorsAndBool[index][1] = "true";
@@ -206,7 +199,7 @@ class PlayerOneGameModel extends GetxController {
   }
 
   void endGame() {
-    playerOneWins.value = true;
+    playerTwoWins.value = true;
     for (var i = 0; listOffColorsAndBool.length > i; i++) {
       listOffColorsAndBool[i][1] = "false";
       listOffColorsAndBool[i][2] = "false";
