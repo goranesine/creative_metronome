@@ -7,42 +7,31 @@ class PlayerTwoGameModel extends GetxController {
 
 
   RxList<List<String>> listOffColorsAndBool = [
-    ["#c500bd", "false", "false"],
-    ["#000066", "false", "false"],
-    ["#494a65", "false", "false"],
-    ["#bd00ff", "false", "false"],
-    ["#0900ff", "false", "false"],
-    ["#c500bd", "false", "false"],
-    ["#c500bd", "false", "false"],
-    ["#000066", "false", "false"],
-    ["#494a65", "false", "false"],
-    ["#bd00ff", "false", "false"],
-    ["#0900ff", "false", "false"],
-    ["#c500bd", "false", "false"],
-    ["#c500bd", "false", "false"],
-    ["#000066", "false", "false"],
-    ["#494a65", "false", "false"],
-    ["#bd00ff", "false", "false"],
-    ["#0900ff", "false", "false"],
-    ["#c500bd", "false", "false"],
-    ["#c500bd", "false", "false"],
-    ["#000066", "false", "false"],
-    ["#494a65", "false", "false"],
-    ["#bd00ff", "false", "false"],
-    ["#0900ff", "false", "false"],
-    ["#c500bd", "false", "false"],
-    ["#c500bd", "false", "false"],
-    ["#000066", "false", "false"],
-    ["#494a65", "false", "false"],
-    ["#bd00ff", "false", "false"],
-    ["#0900ff", "false", "false"],
-    ["#c500bd", "false", "false"],
-    ["#c500bd", "false", "false"],
-    ["#000066", "false", "false"],
-    ["#494a65", "false", "false"],
-    ["#bd00ff", "false", "false"],
-    ["#0900ff", "false", "false"],
-    ["#c500bd", "false", "false"]
+    ["#ee82ee", "false", "false"],
+    ["#ffa500", "false", "false"],
+    ["#ffff00", "false", "false"],
+    ["#008000", "false", "false"],
+    ["#0000ff", "false", "false"], ["#ee82ee", "false", "false"],
+    ["#ffa500", "false", "false"],
+    ["#ffff00", "false", "false"],
+    ["#008000", "false", "false"],
+    ["#0000ff", "false", "false"], ["#ee82ee", "false", "false"],
+    ["#ffa500", "false", "false"],
+    ["#ffff00", "false", "false"],
+    ["#008000", "false", "false"],
+    ["#0000ff", "false", "false"], ["#ee82ee", "false", "false"],
+    ["#ffa500", "false", "false"],
+    ["#ffff00", "false", "false"],
+    ["#008000", "false", "false"],
+    ["#0000ff", "false", "false"], ["#ee82ee", "false", "false"],
+    ["#ffa500", "false", "false"],
+    ["#ffff00", "false", "false"],
+    ["#008000", "false", "false"],
+    ["#0000ff", "false", "false"], ["#ee82ee", "false", "false"],
+    ["#ffa500", "false", "false"],
+    ["#ffff00", "false", "false"],
+    ["#008000", "false", "false"],
+    ["#0000ff", "false", "false"]
   ].obs;
 
   int numberOffTappedTimes = 0;
@@ -52,7 +41,7 @@ class PlayerTwoGameModel extends GetxController {
   String colorThree = "";
   RxBool playerTwoWins = false.obs;
  RxString currentTappedColor = "0".obs;
-//  RxBool disableTapBool = false.obs;
+  RxBool freezPlayerOne = false.obs;
 
   PlayerTwoGameModel() {
     shuffle();
@@ -148,7 +137,10 @@ class PlayerTwoGameModel extends GetxController {
         listOffColorsAndBool[listOffTappedColors[0]][2] = "true";
         listOffColorsAndBool[listOffTappedColors[1]][2] = "true";
         listOffColorsAndBool[listOffTappedColors[2]][2] = "true";
+        freezPlayerOne.value = true;
+
         update();
+        turnFreezPlayerOneFalseWithDelay();
         rebuildListAfterColorMatched();
       } else {
         print("Different colors ");
@@ -158,6 +150,13 @@ class PlayerTwoGameModel extends GetxController {
       }
       //  print("$listColors");
     }
+  }
+
+  void turnFreezPlayerOneFalseWithDelay() {
+    Future.delayed(const Duration(seconds: 2), () {
+      freezPlayerOne.value = false;
+      update();
+    });
   }
 
   void rebuildListAfterColorMatched() {

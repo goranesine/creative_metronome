@@ -3,33 +3,40 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:math_game/models/player_one_game_model.dart';
-import 'package:math_game/widgets/brick.dart';
+import 'package:math_game/models/player_two_game_model.dart';
+import 'package:math_game/services/screen_service.dart';
 import 'package:fcontrol_nullsafety/fdefine.dart';
 
 class PlayerOneBoard extends StatelessWidget {
   final playerOneGameModel = Get.find<PlayerOneGameModel>();
+  final playerTwoGameModel = Get.find<PlayerTwoGameModel>();
+  final screenService = Get.find<ScreenService>();
 
   @override
   Widget build(BuildContext context) {
-    //  String _isTapped = playerOneGameModel.listColors[widget.index][1];
-    // bool isTapped = _isTapped == "false" ? false : true;
-    // TODO: implement build
     return SingleChildScrollView(
       child: Column(
         children: [
-          Container(
-            //  height: 400,
-            child: GridView.builder(
-              shrinkWrap: true,
-              padding: EdgeInsets.all(10.0),
-              itemCount: 30,
-              physics: NeverScrollableScrollPhysics(),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 6,
-                crossAxisSpacing: 10.0,
-                mainAxisSpacing: 10.0,
+          GetBuilder(
+            init: playerTwoGameModel,
+            builder: (_) => AnimatedContainer(
+              curve: Curves.bounceInOut,
+              duration: Duration(milliseconds: 500),
+              width: playerTwoGameModel.freezPlayerOne.value == true
+                  ? 0
+                  : screenService.screenWidth.value,
+              child: GridView.builder(
+                shrinkWrap: true,
+                padding: EdgeInsets.all(10.0),
+                itemCount: 30,
+                physics: NeverScrollableScrollPhysics(),
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 6,
+                  crossAxisSpacing: 10.0,
+                  mainAxisSpacing: 10.0,
+                ),
+                itemBuilder: brick,
               ),
-              itemBuilder: brick,
             ),
           ),
         ],
@@ -42,15 +49,12 @@ class PlayerOneBoard extends StatelessWidget {
     Color mainShadowColor = Colors.black;
     String mainBackgroundColor = "#FF0000";
 
-    bool _isTapped = false;
-
     return GetBuilder(
         init: playerOneGameModel,
         builder: (_) => playerOneGameModel.listOffColorsAndBool[index][2] ==
                 "false"
             ? FButton(
                 surfaceStyle: FSurface.Concave,
-
                 corner: FCorner.all(10.0),
                 isSupportNeumorphism: true,
                 lightOrientation: lightOrientation,
@@ -72,8 +76,6 @@ class PlayerOneBoard extends StatelessWidget {
                     playerOneGameModel.listOffColorsAndBool[index][2] == "true"
                         ? 0.0
                         : 1.0,
-                width: 190,
-                height: 60,
               )
             : FButton(
                 // surfaceStyle: FSurface.Concave,

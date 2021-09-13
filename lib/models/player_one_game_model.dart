@@ -1,53 +1,38 @@
 import 'package:get/get.dart';
 import 'package:collection/collection.dart';
 
-class BrickModel {
-  int brickIndex = 0;
-  List<String> colorAndIsTapped = [];
-
-  BrickModel({required this.brickIndex, required this.colorAndIsTapped});
-}
-
 class PlayerOneGameModel extends GetxController {
-
-
   RxList<List<String>> listOffColorsAndBool = [
-    ["#c500bd", "false", "false"],
-    ["#000066", "false", "false"],
-    ["#494a65", "false", "false"],
-    ["#bd00ff", "false", "false"],
-    ["#0900ff", "false", "false"],
-    ["#c500bd", "false", "false"],
-    ["#c500bd", "false", "false"],
-    ["#000066", "false", "false"],
-    ["#494a65", "false", "false"],
-    ["#bd00ff", "false", "false"],
-    ["#0900ff", "false", "false"],
-    ["#c500bd", "false", "false"],
-    ["#c500bd", "false", "false"],
-    ["#000066", "false", "false"],
-    ["#494a65", "false", "false"],
-    ["#bd00ff", "false", "false"],
-    ["#0900ff", "false", "false"],
-    ["#c500bd", "false", "false"],
-    ["#c500bd", "false", "false"],
-    ["#000066", "false", "false"],
-    ["#494a65", "false", "false"],
-    ["#bd00ff", "false", "false"],
-    ["#0900ff", "false", "false"],
-    ["#c500bd", "false", "false"],
-    ["#c500bd", "false", "false"],
-    ["#000066", "false", "false"],
-    ["#494a65", "false", "false"],
-    ["#bd00ff", "false", "false"],
-    ["#0900ff", "false", "false"],
-    ["#c500bd", "false", "false"],
-    ["#c500bd", "false", "false"],
-    ["#000066", "false", "false"],
-    ["#494a65", "false", "false"],
-    ["#bd00ff", "false", "false"],
-    ["#0900ff", "false", "false"],
-    ["#c500bd", "false", "false"]
+    ["#ee82ee", "false", "false"],
+    ["#ffa500", "false", "false"],
+    ["#ffff00", "false", "false"],
+    ["#008000", "false", "false"],
+    ["#0000ff", "false", "false"],
+    ["#ee82ee", "false", "false"],
+    ["#ffa500", "false", "false"],
+    ["#ffff00", "false", "false"],
+    ["#008000", "false", "false"],
+    ["#0000ff", "false", "false"],
+    ["#ee82ee", "false", "false"],
+    ["#ffa500", "false", "false"],
+    ["#ffff00", "false", "false"],
+    ["#008000", "false", "false"],
+    ["#0000ff", "false", "false"],
+    ["#ee82ee", "false", "false"],
+    ["#ffa500", "false", "false"],
+    ["#ffff00", "false", "false"],
+    ["#008000", "false", "false"],
+    ["#0000ff", "false", "false"],
+    ["#ee82ee", "false", "false"],
+    ["#ffa500", "false", "false"],
+    ["#ffff00", "false", "false"],
+    ["#008000", "false", "false"],
+    ["#0000ff", "false", "false"],
+    ["#ee82ee", "false", "false"],
+    ["#ffa500", "false", "false"],
+    ["#ffff00", "false", "false"],
+    ["#008000", "false", "false"],
+    ["#0000ff", "false", "false"]
   ].obs;
 
   int numberOffTappedTimes = 0;
@@ -57,6 +42,7 @@ class PlayerOneGameModel extends GetxController {
   String colorThree = "";
   RxBool playerOneWins = false.obs;
   RxString currentTappedColor = "0".obs;
+  RxBool freezPlayerTwo = false.obs;
 
 //  RxBool disableTapBool = false.obs;
 
@@ -155,7 +141,9 @@ class PlayerOneGameModel extends GetxController {
         listOffColorsAndBool[listOffTappedColors[0]][2] = "true";
         listOffColorsAndBool[listOffTappedColors[1]][2] = "true";
         listOffColorsAndBool[listOffTappedColors[2]][2] = "true";
+        freezPlayerTwo.value = true;
         update();
+        turnFreezPlayerTwoFalseWithDelay();
         rebuildListAfterColorMatched();
       } else {
         print("Different colors ");
@@ -165,6 +153,13 @@ class PlayerOneGameModel extends GetxController {
       }
       //  print("$listColors");
     }
+  }
+
+  void turnFreezPlayerTwoFalseWithDelay() {
+    Future.delayed(const Duration(seconds: 2), () {
+      freezPlayerTwo.value = false;
+      update();
+    });
   }
 
   void rebuildListAfterColorMatched() {
