@@ -7,6 +7,8 @@ import 'package:math_game/models/player_two_game_model.dart';
 import 'package:math_game/services/screen_service.dart';
 import 'package:fcontrol_nullsafety/fdefine.dart';
 
+import 'custom_delegate.dart';
+
 class PlayerOneBoard extends StatelessWidget {
   final playerOneGameModel = Get.find<PlayerOneGameModel>();
   final playerTwoGameModel = Get.find<PlayerTwoGameModel>();
@@ -30,10 +32,11 @@ class PlayerOneBoard extends StatelessWidget {
                 padding: EdgeInsets.all(10.0),
                 itemCount: 30,
                 physics: NeverScrollableScrollPhysics(),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate: SliverGridDelegateWithFixedCrossAxisCountAndFixedHeight(
                   crossAxisCount: 6,
                   crossAxisSpacing: 10.0,
                   mainAxisSpacing: 10.0,
+                  height: screenService.screenHeight.value/13,
                 ),
                 itemBuilder: brick,
               ),

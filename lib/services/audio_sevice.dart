@@ -7,13 +7,13 @@ class AudioService extends GetxController{
  // String? localAudioCacheURI;
 
 AudioService(){
-     player.loadAll(['background_music.mp3']).then((value) => play(),);
+     player.loadAll(["bravo.wav","odlicno.wav"]);
 
-
+play();
 }
 
   void play()async{
- // await  player.loadAll(['assets/background_music.mp3']);
+ player.play('bravo.wav');
 
    //  await player.play('background_music.mp3');
 
