@@ -36,7 +36,7 @@ class PlayerOneBoard extends StatelessWidget {
                   crossAxisCount: 6,
                   crossAxisSpacing: 10.0,
                   mainAxisSpacing: 10.0,
-                  height: screenService.screenHeight.value/13,
+                  height: screenService.screenHeight.value/15,
                 ),
                 itemBuilder: brick,
               ),

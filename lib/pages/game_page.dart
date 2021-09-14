@@ -18,7 +18,7 @@ class GamePage extends StatelessWidget {
     playerOneGameModel.addListener(() {
       playerOneGameModel.playerOneWins.value == true
           ? Get.off(() => WinPage(
-                whoWin: "Player One",
+                whoWin: 1,
               ))
           : null;
     });
@@ -26,7 +26,7 @@ class GamePage extends StatelessWidget {
     playerTwoGameModel.addListener(() {
       playerTwoGameModel.playerTwoWins.value == true
           ? Get.off(() => WinPage(
-                whoWin: "Player Two",
+                whoWin: 2,
               ))
           : null;
     });

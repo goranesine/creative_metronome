@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 
 import 'package:get/get_core/src/get_main.dart';
 import 'package:math_game/models/player_one_game_model.dart';
+import 'package:math_game/pages/win_page.dart';
 import 'package:math_game/services/audio_sevice.dart';
 import 'package:math_game/services/screen_service.dart';
 
@@ -19,14 +20,14 @@ final audioService = Get.find<AudioService>();
   Widget build(BuildContext context) {
     double _width = MediaQuery.of(context).size.width;
     double _height = MediaQuery.of(context).size.height;
-    screenService.storeScreenDimension(_width, _height - kToolbarHeight -24);
+    screenService.storeScreenDimension(_width, _height );
     return Container(
       width: _width,
         height: _height,
         decoration: BoxDecoration(gradient: _gradient),
         child: Scaffold(
             floatingActionButton: FloatingActionButton(
-                onPressed: () => audioService.play(),
+                onPressed: () => null,
                 child: Text("end game")),
             backgroundColor: Colors.transparent,
             body: GamePage()));

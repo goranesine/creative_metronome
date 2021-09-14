@@ -1,7 +1,9 @@
 import 'package:get/get.dart';
 import 'package:collection/collection.dart';
+import 'package:math_game/services/audio_sevice.dart';
 
 class PlayerOneGameModel extends GetxController {
+  final audioSevice = Get.find<AudioService>();
   RxList<List<String>> listOffColorsAndBool = [
     ["#ee82ee", "false", "false"],
     ["#ffa500", "false", "false"],
@@ -113,12 +115,6 @@ class PlayerOneGameModel extends GetxController {
       "true",
       "true",
       "true",
-      "true",
-      "true",
-      "true",
-      "true",
-      "true",
-      "true",
       "true"
     ];
     for (var i = 0; listOffColorsAndBool.length > i; i++) {
@@ -136,8 +132,8 @@ class PlayerOneGameModel extends GetxController {
       colorThree = listOffColorsAndBool[listOffTappedColors[2]][0];
 
       if (colorOne == colorTwo && colorOne == colorThree) {
-        //   endOffTurn.value = true;
-        print("Same colors ");
+audioSevice.playPositiveMatchedColors();
+print("Same colors ");
         listOffColorsAndBool[listOffTappedColors[0]][2] = "true";
         listOffColorsAndBool[listOffTappedColors[1]][2] = "true";
         listOffColorsAndBool[listOffTappedColors[2]][2] = "true";
@@ -146,6 +142,7 @@ class PlayerOneGameModel extends GetxController {
         turnFreezPlayerTwoFalseWithDelay();
         rebuildListAfterColorMatched();
       } else {
+        audioSevice.playNegativeMatchedColors();
         print("Different colors ");
 
         update();
