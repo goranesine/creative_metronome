@@ -7,7 +7,7 @@ import 'package:math_game/services/audio_sevice.dart';
 class MetronomeModel extends GetxController{
   final audioService = Get.find<AudioService>();
 
-  RxDouble tempo = 0.5.obs;
+  RxInt tempo = 120.obs;
   bool active = false;
   RxBool tickSignal = false.obs;
 RxInt tickCounter = 0.obs;
@@ -40,7 +40,7 @@ update();
 
   Duration _getDuration() {
   //  print(tempo);
-    final time = 60 / (tempo*240);
+    final time = 60 / tempo.value;
     return Duration(
       seconds: time.toInt(),
       milliseconds: (time * 1000).toInt() % 1000,
