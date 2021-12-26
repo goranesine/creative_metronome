@@ -15,6 +15,7 @@ RxInt tickCounter = 0.obs;
 
   void start() {
     active = true;
+
     Timer(_getDuration(), _handleEvent);
   }
 
@@ -27,18 +28,18 @@ RxInt tickCounter = 0.obs;
   }
 
   void _handleEvent() {
-    if (active) {
+    if (active || tickCounter.value != -1) {
       Timer(_getDuration(), _handleEvent);
     }
 audioService.playerOneOnClickSound();
 tickSignal.value = !tickSignal.value;
-tickCounter < 8 ?  tickCounter.value++ : tickCounter.value = 1;
+tickCounter < 12 ?  tickCounter.value++ : tickCounter.value = 1;
 update();
 
   }
 
   Duration _getDuration() {
-    print(tempo);
+  //  print(tempo);
     final time = 60 / (tempo*240);
     return Duration(
       seconds: time.toInt(),

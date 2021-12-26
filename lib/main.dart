@@ -46,31 +46,54 @@ class _HomePageState extends State<HomePage> {
   final metronomeModel = Get.find<MetronomeModel>();
 
   double sliderValue = 0.5;
-  List<double> barBpmList = [0.5,0.5,0.5,0.5,0.5,0.5,0.5];
+  List<double> barBpmList = [0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5,0.5];
 
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    return Stack(
       children: [
-        FloatingActionButton(
-          onPressed: () => metronomeModel.tickCounter.value == 0
-              ? metronomeModel.start()
-              : metronomeModel.stop(),
+
+        Positioned(
+          left: 0,
+          top: 0,
+          child: GetBuilder<MetronomeModel>(
+            // specify type as Controller
+            init: metronomeModel, // intialize with the Controller
+            builder: (value) => barCard(width, height, 1),
+          ),
         ),
-        GetBuilder<MetronomeModel>(
-          // specify type as Controller
-          init: metronomeModel, // intialize with the Controller
-          builder: (value) => barCard(width, height, 1),
+        Positioned(
+          left: width/4,
+          top: 0,
+          child: GetBuilder<MetronomeModel>(
+            // specify type as Controller
+            init: metronomeModel, // intialize with the Controller
+            builder: (value) => barCard(width, height, 5),
+          ),
         ),
-        GetBuilder<MetronomeModel>(
-          // specify type as Controller
-          init: metronomeModel, // intialize with the Controller
-          builder: (value) => barCard(width, height, 5),
+        Positioned(
+          left: (width/4)*2,
+          top: 0,
+          child: GetBuilder<MetronomeModel>(
+            // specify type as Controller
+            init: metronomeModel, // intialize with the Controller
+            builder: (value) => barCard(width, height, 9),
+          ),
         ),
-      ],
+
+
+        Positioned(
+          bottom: 0,
+          right: 0,
+          child: FloatingActionButton(
+            onPressed: () => metronomeModel.tickCounter.value == 0
+                ? metronomeModel.start()
+                : metronomeModel.stop(),
+          ),
+        ),
+      ]
     );
   }
 
@@ -79,15 +102,19 @@ class _HomePageState extends State<HomePage> {
 
     if (metronomeModel.tickCounter.value == index ||
         metronomeModel.tickCounter.value == index + 1 ||
-        metronomeModel.tickCounter.value == index + 2 ||
-        metronomeModel.tickCounter.value == index + 3) {
+        metronomeModel.tickCounter.value == index + 2
+        ) {
       metronomeModel.tempo.value = barBpmList[index];
    //   print(metronomeModel.tickCounter.value);
+    } else if(metronomeModel.tickCounter.value == index + 3 ){
+      metronomeModel.tempo.value = metronomeModel.tickCounter.value != 12 ? barBpmList[index+4] : barBpmList[1];
     }
+
     return InkWell(
       onTap: () => Get.defaultDialog(
         title: "Adjust BPM",
         content: Slider(
+          divisions: 10,
             value: sliderValue,
             onChanged: (double newValue) {
               setState(() {
@@ -95,20 +122,24 @@ class _HomePageState extends State<HomePage> {
               });
             },
             onChangeEnd: (double newValue) {
+         //     metronomeModel.tempo.value = newValue;
+
               setState(() {
-                metronomeModel.tempo.value = newValue;
                 barBpmList[index] = newValue;
               });
             }),
       ),
-      child: Card(
-        color: metronomeModel.tickCounter.value != 0
-            ? getColor(index, metronomeModel.tickCounter.value)
-            : Colors.redAccent,
-        child: Container(
-          width: width / 4,
-          height: height / 16,
-          child: Text(metronomeModel.tickCounter.value.toString()),
+      child: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Card(
+          color: metronomeModel.tickCounter.value != 0
+              ? getColor(index, metronomeModel.tickCounter.value)
+              : Colors.redAccent,
+          child: Container(
+            width: width / 4-8,
+            height: height / 16,
+            child: Text(barBpmList[index].toString()),
+          ),
         ),
       ),
     );
