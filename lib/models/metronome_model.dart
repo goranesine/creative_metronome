@@ -19,23 +19,26 @@ RxInt tickCounter = 0.obs;
   }
 
   void stop() {
+
     active = false;
     tickCounter.value = -1;
-    audioService.playOrderPlayerOne.value = true;
+    audioService.beatCounter.value = -1;
     update();
   }
 
   void _handleEvent() {
-audioService.playerOneOnClickSound();
-tickSignal.value = !tickSignal.value;
-tickCounter < 64 ?  tickCounter.value++ : tickCounter.value = 1;
-update();
     if (active) {
       Timer(_getDuration(), _handleEvent);
     }
+audioService.playerOneOnClickSound();
+tickSignal.value = !tickSignal.value;
+tickCounter < 8 ?  tickCounter.value++ : tickCounter.value = 1;
+update();
+
   }
 
   Duration _getDuration() {
+    print(tempo);
     final time = 60 / (tempo*240);
     return Duration(
       seconds: time.toInt(),

@@ -22,7 +22,7 @@ class AudioService extends GetxController {
 
   RxBool playOrderPlayerOne = false.obs;
   bool playOrderPlayerTwo = false;
-
+RxInt beatCounter = 0.obs;
   AudioService() {
 
     player.loadAll([playerTwoPlaySounds.first]);
@@ -40,18 +40,19 @@ class AudioService extends GetxController {
   }
 
   void playerOneOnClickSound() async {
-    if (playOrderPlayerOne.value == false) {
+    beatCounter.value == 0 ? beatCounter++ : null;
+  update();
+    if (beatCounter.value == 1) {
       await player.play(playerOnePlaySounds.first,
           mode: PlayerMode.LOW_LATENCY);
-      playOrderPlayerOne.value == false
-          ? playOrderPlayerOne.value = true
-          : playOrderPlayerOne.value = false;
+
     } else {
       await player.play(playerOnePlaySounds.last, mode: PlayerMode.LOW_LATENCY);
-      playOrderPlayerOne.value == false
-          ? playOrderPlayerOne.value = true
-          : playOrderPlayerOne.value = false;
+
     }
+   // print(beatCounter.value);
+    beatCounter.value < 4 ? beatCounter.value++ : beatCounter.value = 1;
+
   }
 
   void playerTwoOnClickSound() async {
