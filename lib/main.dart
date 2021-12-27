@@ -58,6 +58,9 @@ class _HomePageState extends State<HomePage> {
     120,
     120,
     120,
+    120, 120,
+    120,
+    120,
     120,
     120
   ];
@@ -95,14 +98,16 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       Positioned(
-        bottom: 0,
-        right: 0,
-        child: FloatingActionButton(
-          onPressed: () => metronomeModel.tickCounter.value == 0
-              ? metronomeModel.start()
-              : metronomeModel.stop(),
+        left: (width / 4) * 3,
+        top: 0,
+        child: GetBuilder<MetronomeModel>(
+          // specify type as Controller
+          init: metronomeModel, // intialize with the Controller
+          builder: (value) => barCard(width, height, 13),
         ),
       ),
+
+
     ]);
   }
 
@@ -120,17 +125,20 @@ class _HomePageState extends State<HomePage> {
       metronomeModel.tempo.value = barBpmList[index];
       //   print(metronomeModel.tickCounter.value);
     } else if (metronomeModel.tickCounter.value == index + 3) {
-      metronomeModel.tempo.value = metronomeModel.tickCounter.value != 12
+      metronomeModel.tempo.value = metronomeModel.tickCounter.value != 16
           ? barBpmList[index + 4]
           : barBpmList[1];
     }
 
     return InkWell(
+      onDoubleTap:() => metronomeModel.active
+          ? metronomeModel.stop()
+          : metronomeModel.start(),
       onTap: () => Get.defaultDialog(
         title: "Adjust BPM",
         content: SleekCircularSlider(
           appearance: CircularSliderAppearance(
-            animDurationMultiplier: 5.0,
+           // animDurationMultiplier: 5.0,
             infoProperties: InfoProperties(
                 modifier: percentageModifier,
                 bottomLabelText: "BPM",
@@ -142,25 +150,23 @@ class _HomePageState extends State<HomePage> {
           onChangeEnd: (double endValue) {
             setState(() {
               for (var i = 0; i < barBpmList.length - index; i++) {
-                barBpmList[11 - i] = endValue.toInt();
+                barBpmList[15 - i] = endValue.toInt();
               }
             });
           },
         ),
       ),
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Card(
+      child: Card(
           color: metronomeModel.tickCounter.value != 0
               ? getColor(index, metronomeModel.tickCounter.value)
               : Colors.redAccent,
           child: Container(
-            width: width / 4 - 8,
+            width: width / 4 ,
             height: height / 16,
             child: Text(barBpmList[index].toString()),
           ),
         ),
-      ),
+
     );
   }
 

@@ -15,7 +15,7 @@ RxInt tickCounter = 0.obs;
 
   void start() {
     active = true;
-
+update();
     Timer(_getDuration(), _handleEvent);
   }
 
@@ -33,7 +33,7 @@ RxInt tickCounter = 0.obs;
     }
 audioService.playerOneOnClickSound();
 tickSignal.value = !tickSignal.value;
-tickCounter < 12 ?  tickCounter.value++ : tickCounter.value = 1;
+tickCounter < 16 ?  tickCounter.value++ : tickCounter.value = 1;
 update();
 
   }

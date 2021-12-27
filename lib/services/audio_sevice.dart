@@ -25,7 +25,7 @@ class AudioService extends GetxController {
 RxInt beatCounter = 0.obs;
   AudioService() {
 
-    player.loadAll([playerTwoPlaySounds.first]);
+    player.loadAll([playerOnePlaySounds.first]);
  //   playBackgroundMusic();
   }
 
