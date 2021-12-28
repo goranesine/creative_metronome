@@ -39,11 +39,13 @@ RxInt beatCounter = 0.obs;
         mode: PlayerMode.LOW_LATENCY);
   }
 
+
   void playerOneOnClickSound() async {
     beatCounter.value == 0 ? beatCounter++ : null;
   update();
     if (beatCounter.value == 1) {
-      await player.play(playerOnePlaySounds.first,
+
+     await player.play(playerOnePlaySounds.first,
           mode: PlayerMode.LOW_LATENCY);
 
     } else {

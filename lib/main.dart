@@ -14,8 +14,7 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   Wakelock.enable();
   Get.put(AudioService());
-  // Get.put(PlayerOneGameModel());
-//  Get.put(PlayerTwoGameModel());
+
   Get.put(ScreenService());
   Get.put(MetronomeModel());
   runApp(MyApp());
@@ -58,11 +57,252 @@ class _HomePageState extends State<HomePage> {
     120,
     120,
     120,
-    120, 120,
     120,
     120,
     120,
-    120
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
+    120,
   ];
 
   @override
@@ -106,8 +346,546 @@ class _HomePageState extends State<HomePage> {
           builder: (value) => barCard(width, height, 13),
         ),
       ),
-
-
+      Positioned(
+        left: 0,
+        top: height/16,
+        child: GetBuilder<MetronomeModel>(
+          // specify type as Controller
+          init: metronomeModel, // intialize with the Controller
+          builder: (value) => barCard(width, height, 17),
+        ),
+      ),
+      Positioned(
+        left: width / 4,
+        top: height/16,
+        child: GetBuilder<MetronomeModel>(
+          // specify type as Controller
+          init: metronomeModel, // intialize with the Controller
+          builder: (value) => barCard(width, height, 21),
+        ),
+      ),
+      Positioned(
+        left: (width / 4) * 2,
+        top: height/16,
+        child: GetBuilder<MetronomeModel>(
+          // specify type as Controller
+          init: metronomeModel, // intialize with the Controller
+          builder: (value) => barCard(width, height, 25),
+        ),
+      ),
+      Positioned(
+        left: (width / 4) * 3,
+        top: height/16,
+        child: GetBuilder<MetronomeModel>(
+          // specify type as Controller
+          init: metronomeModel, // intialize with the Controller
+          builder: (value) => barCard(width, height, 29),
+        ),
+      ),
+      Positioned(
+        left: 0,
+        top: (height/16)*2,
+        child: GetBuilder<MetronomeModel>(
+          // specify type as Controller
+          init: metronomeModel, // intialize with the Controller
+          builder: (value) => barCard(width, height, 33),
+        ),
+      ),
+      Positioned(
+        left: width / 4,
+        top: (height/16)*2,
+        child: GetBuilder<MetronomeModel>(
+          // specify type as Controller
+          init: metronomeModel, // intialize with the Controller
+          builder: (value) => barCard(width, height, 37),
+        ),
+      ),
+      Positioned(
+        left: (width / 4) * 2,
+        top: (height/16)*2,
+        child: GetBuilder<MetronomeModel>(
+          // specify type as Controller
+          init: metronomeModel, // intialize with the Controller
+          builder: (value) => barCard(width, height, 41),
+        ),
+      ),
+      Positioned(
+        left: (width / 4) * 3,
+        top: (height/16)*2,
+        child: GetBuilder<MetronomeModel>(
+          // specify type as Controller
+          init: metronomeModel, // intialize with the Controller
+          builder: (value) => barCard(width, height, 45),
+        ),
+      ),
+      Positioned(
+        left: 0,
+        top: (height/16)*3,
+        child: GetBuilder<MetronomeModel>(
+          // specify type as Controller
+          init: metronomeModel, // intialize with the Controller
+          builder: (value) => barCard(width, height, 49),
+        ),
+      ),
+      Positioned(
+        left: width / 4,
+        top: (height/16)*3,
+        child: GetBuilder<MetronomeModel>(
+          // specify type as Controller
+          init: metronomeModel, // intialize with the Controller
+          builder: (value) => barCard(width, height, 53),
+        ),
+      ),
+      Positioned(
+        left: (width / 4) * 2,
+        top: (height/16)*3,
+        child: GetBuilder<MetronomeModel>(
+          // specify type as Controller
+          init: metronomeModel, // intialize with the Controller
+          builder: (value) => barCard(width, height, 57),
+        ),
+      ),
+      Positioned(
+        left: (width / 4) * 3,
+        top: (height/16)*3,
+        child: GetBuilder<MetronomeModel>(
+          // specify type as Controller
+          init: metronomeModel, // intialize with the Controller
+          builder: (value) => barCard(width, height, 61),
+        ),
+      ),
+      Positioned(
+        left: 0,
+        top: (height/16)*4,
+        child: GetBuilder<MetronomeModel>(
+          // specify type as Controller
+          init: metronomeModel, // intialize with the Controller
+          builder: (value) => barCard(width, height, 65),
+        ),
+      ),
+      Positioned(
+        left: width / 4,
+        top: (height/16)*4,
+        child: GetBuilder<MetronomeModel>(
+          // specify type as Controller
+          init: metronomeModel, // intialize with the Controller
+          builder: (value) => barCard(width, height, 69),
+        ),
+      ),
+      Positioned(
+        left: (width / 4) * 2,
+        top: (height/16)*4,
+        child: GetBuilder<MetronomeModel>(
+          // specify type as Controller
+          init: metronomeModel, // intialize with the Controller
+          builder: (value) => barCard(width, height, 73),
+        ),
+      ),
+      Positioned(
+        left: (width / 4) * 3,
+        top: (height/16)*4,
+        child: GetBuilder<MetronomeModel>(
+          // specify type as Controller
+          init: metronomeModel, // intialize with the Controller
+          builder: (value) => barCard(width, height, 77),
+        ),
+      ),
+      Positioned(
+        left: 0,
+        top: (height/16)*5,
+        child: GetBuilder<MetronomeModel>(
+          // specify type as Controller
+          init: metronomeModel, // intialize with the Controller
+          builder: (value) => barCard(width, height, 81),
+        ),
+      ),
+      Positioned(
+        left: width / 4,
+        top: (height/16)*5,
+        child: GetBuilder<MetronomeModel>(
+          // specify type as Controller
+          init: metronomeModel, // intialize with the Controller
+          builder: (value) => barCard(width, height, 85),
+        ),
+      ),
+      Positioned(
+        left: (width / 4) * 2,
+        top: (height/16)*5,
+        child: GetBuilder<MetronomeModel>(
+          // specify type as Controller
+          init: metronomeModel, // intialize with the Controller
+          builder: (value) => barCard(width, height, 89),
+        ),
+      ),
+      Positioned(
+        left: (width / 4) * 3,
+        top: (height/16)*5,
+        child: GetBuilder<MetronomeModel>(
+          // specify type as Controller
+          init: metronomeModel, // intialize with the Controller
+          builder: (value) => barCard(width, height, 93),
+        ),
+      ),
+      Positioned(
+        left: 0,
+        top: (height/16)*6,
+        child: GetBuilder<MetronomeModel>(
+          // specify type as Controller
+          init: metronomeModel, // intialize with the Controller
+          builder: (value) => barCard(width, height, 97),
+        ),
+      ),
+      Positioned(
+        left: width / 4,
+        top: (height/16)*6,
+        child: GetBuilder<MetronomeModel>(
+          // specify type as Controller
+          init: metronomeModel, // intialize with the Controller
+          builder: (value) => barCard(width, height, 101),
+        ),
+      ),
+      Positioned(
+        left: (width / 4) * 2,
+        top: (height/16)*6,
+        child: GetBuilder<MetronomeModel>(
+          // specify type as Controller
+          init: metronomeModel, // intialize with the Controller
+          builder: (value) => barCard(width, height, 105),
+        ),
+      ),
+      Positioned(
+        left: (width / 4) * 3,
+        top: (height/16)*6,
+        child: GetBuilder<MetronomeModel>(
+          // specify type as Controller
+          init: metronomeModel, // intialize with the Controller
+          builder: (value) => barCard(width, height, 109),
+        ),
+      ),
+      Positioned(
+        left: 0,
+        top: (height/16)*7,
+        child: GetBuilder<MetronomeModel>(
+          // specify type as Controller
+          init: metronomeModel, // intialize with the Controller
+          builder: (value) => barCard(width, height, 113),
+        ),
+      ),
+      Positioned(
+        left: width / 4,
+        top: (height/16)*6,
+        child: GetBuilder<MetronomeModel>(
+          // specify type as Controller
+          init: metronomeModel, // intialize with the Controller
+          builder: (value) => barCard(width, height, 117),
+        ),
+      ),
+      Positioned(
+        left: (width / 4) * 2,
+        top: (height/16)*6,
+        child: GetBuilder<MetronomeModel>(
+          // specify type as Controller
+          init: metronomeModel, // intialize with the Controller
+          builder: (value) => barCard(width, height, 121),
+        ),
+      ),
+      Positioned(
+        left: (width / 4) * 3,
+        top: (height/16)*6,
+        child: GetBuilder<MetronomeModel>(
+          // specify type as Controller
+          init: metronomeModel, // intialize with the Controller
+          builder: (value) => barCard(width, height, 125),
+        ),
+      ),
+      Positioned(
+        left: 0,
+        top: (height/16)*7,
+        child: GetBuilder<MetronomeModel>(
+          // specify type as Controller
+          init: metronomeModel, // intialize with the Controller
+          builder: (value) => barCard(width, height, 129),
+        ),
+      ),
+      Positioned(
+        left: width / 4,
+        top: (height/16)*7,
+        child: GetBuilder<MetronomeModel>(
+          // specify type as Controller
+          init: metronomeModel, // intialize with the Controller
+          builder: (value) => barCard(width, height, 133),
+        ),
+      ),
+      Positioned(
+        left: (width / 4) * 2,
+        top: (height/16)*7,
+        child: GetBuilder<MetronomeModel>(
+          // specify type as Controller
+          init: metronomeModel, // intialize with the Controller
+          builder: (value) => barCard(width, height, 137),
+        ),
+      ),
+      Positioned(
+        left: (width / 4) * 3,
+        top: (height/16)*7,
+        child: GetBuilder<MetronomeModel>(
+          // specify type as Controller
+          init: metronomeModel, // intialize with the Controller
+          builder: (value) => barCard(width, height, 141),
+        ),
+      ),
+      Positioned(
+        left: 0,
+        top: (height/16)*8,
+        child: GetBuilder<MetronomeModel>(
+          // specify type as Controller
+          init: metronomeModel, // intialize with the Controller
+          builder: (value) => barCard(width, height, 145),
+        ),
+      ),
+      Positioned(
+        left: width / 4,
+        top: (height/16)*8,
+        child: GetBuilder<MetronomeModel>(
+          // specify type as Controller
+          init: metronomeModel, // intialize with the Controller
+          builder: (value) => barCard(width, height, 149),
+        ),
+      ),
+      Positioned(
+        left: (width / 4) * 2,
+        top: (height/16)*8,
+        child: GetBuilder<MetronomeModel>(
+          // specify type as Controller
+          init: metronomeModel, // intialize with the Controller
+          builder: (value) => barCard(width, height, 153),
+        ),
+      ),
+      Positioned(
+        left: (width / 4) * 3,
+        top: (height/16)*8,
+        child: GetBuilder<MetronomeModel>(
+          // specify type as Controller
+          init: metronomeModel, // intialize with the Controller
+          builder: (value) => barCard(width, height, 157),
+        ),
+      ),
+      Positioned(
+        left: 0,
+        top: (height/16)*9,
+        child: GetBuilder<MetronomeModel>(
+          // specify type as Controller
+          init: metronomeModel, // intialize with the Controller
+          builder: (value) => barCard(width, height, 161),
+        ),
+      ),
+      Positioned(
+        left: width / 4,
+        top: (height/16)*9,
+        child: GetBuilder<MetronomeModel>(
+          // specify type as Controller
+          init: metronomeModel, // intialize with the Controller
+          builder: (value) => barCard(width, height, 165),
+        ),
+      ),
+      Positioned(
+        left: (width / 4) * 2,
+        top: (height/16)*9,
+        child: GetBuilder<MetronomeModel>(
+          // specify type as Controller
+          init: metronomeModel, // intialize with the Controller
+          builder: (value) => barCard(width, height, 169),
+        ),
+      ),
+      Positioned(
+        left: (width / 4) * 3,
+        top: (height/16)*9,
+        child: GetBuilder<MetronomeModel>(
+          // specify type as Controller
+          init: metronomeModel, // intialize with the Controller
+          builder: (value) => barCard(width, height, 173),
+        ),
+      ),
+      Positioned(
+        left: 0,
+        top: (height/16)*10,
+        child: GetBuilder<MetronomeModel>(
+          // specify type as Controller
+          init: metronomeModel, // intialize with the Controller
+          builder: (value) => barCard(width, height, 177),
+        ),
+      ),
+      Positioned(
+        left: width / 4,
+        top: (height/16)*10,
+        child: GetBuilder<MetronomeModel>(
+          // specify type as Controller
+          init: metronomeModel, // intialize with the Controller
+          builder: (value) => barCard(width, height, 181),
+        ),
+      ),
+      Positioned(
+        left: (width / 4) * 2,
+        top: (height/16)*10,
+        child: GetBuilder<MetronomeModel>(
+          // specify type as Controller
+          init: metronomeModel, // intialize with the Controller
+          builder: (value) => barCard(width, height, 185),
+        ),
+      ),
+      Positioned(
+        left: (width / 4) * 3,
+        top: (height/16)*10,
+        child: GetBuilder<MetronomeModel>(
+          // specify type as Controller
+          init: metronomeModel, // intialize with the Controller
+          builder: (value) => barCard(width, height, 189),
+        ),
+      ),
+      Positioned(
+        left: 0,
+        top: (height/16)*11,
+        child: GetBuilder<MetronomeModel>(
+          // specify type as Controller
+          init: metronomeModel, // intialize with the Controller
+          builder: (value) => barCard(width, height, 193),
+        ),
+      ),
+      Positioned(
+        left: width / 4,
+        top: (height/16)*11,
+        child: GetBuilder<MetronomeModel>(
+          // specify type as Controller
+          init: metronomeModel, // intialize with the Controller
+          builder: (value) => barCard(width, height, 197),
+        ),
+      ),
+      Positioned(
+        left: (width / 4) * 2,
+        top: (height/16)*11,
+        child: GetBuilder<MetronomeModel>(
+          // specify type as Controller
+          init: metronomeModel, // intialize with the Controller
+          builder: (value) => barCard(width, height, 201),
+        ),
+      ),
+      Positioned(
+        left: (width / 4) * 3,
+        top: (height/16)*11,
+        child: GetBuilder<MetronomeModel>(
+          // specify type as Controller
+          init: metronomeModel, // intialize with the Controller
+          builder: (value) => barCard(width, height, 205),
+        ),
+      ),
+      Positioned(
+        left: 0,
+        top: (height/16)*12,
+        child: GetBuilder<MetronomeModel>(
+          // specify type as Controller
+          init: metronomeModel, // intialize with the Controller
+          builder: (value) => barCard(width, height, 209),
+        ),
+      ),
+      Positioned(
+        left: width / 4,
+        top: (height/16)*12,
+        child: GetBuilder<MetronomeModel>(
+          // specify type as Controller
+          init: metronomeModel, // intialize with the Controller
+          builder: (value) => barCard(width, height, 213),
+        ),
+      ),
+      Positioned(
+        left: (width / 4) * 2,
+        top: (height/16)*12,
+        child: GetBuilder<MetronomeModel>(
+          // specify type as Controller
+          init: metronomeModel, // intialize with the Controller
+          builder: (value) => barCard(width, height, 217),
+        ),
+      ),
+      Positioned(
+        left: (width / 4) * 3,
+        top: (height/16)*12,
+        child: GetBuilder<MetronomeModel>(
+          // specify type as Controller
+          init: metronomeModel, // intialize with the Controller
+          builder: (value) => barCard(width, height, 221),
+        ),
+      ),
+      Positioned(
+        left: 0,
+        top: (height/16)*13,
+        child: GetBuilder<MetronomeModel>(
+          // specify type as Controller
+          init: metronomeModel, // intialize with the Controller
+          builder: (value) => barCard(width, height, 225),
+        ),
+      ),
+      Positioned(
+        left: width / 4,
+        top: (height/16)*13,
+        child: GetBuilder<MetronomeModel>(
+          // specify type as Controller
+          init: metronomeModel, // intialize with the Controller
+          builder: (value) => barCard(width, height, 229),
+        ),
+      ),
+      Positioned(
+        left: (width / 4) * 2,
+        top: (height/16)*13,
+        child: GetBuilder<MetronomeModel>(
+          // specify type as Controller
+          init: metronomeModel, // intialize with the Controller
+          builder: (value) => barCard(width, height, 233),
+        ),
+      ),
+      Positioned(
+        left: (width / 4) * 3,
+        top: (height/16)*13,
+        child: GetBuilder<MetronomeModel>(
+          // specify type as Controller
+          init: metronomeModel, // intialize with the Controller
+          builder: (value) => barCard(width, height, 237),
+        ),
+      ),
+      Positioned(
+        left: 0,
+        top: (height/16)*14,
+        child: GetBuilder<MetronomeModel>(
+          // specify type as Controller
+          init: metronomeModel, // intialize with the Controller
+          builder: (value) => barCard(width, height, 241),
+        ),
+      ),
+      Positioned(
+        left: width / 4,
+        top: (height/16)*14,
+        child: GetBuilder<MetronomeModel>(
+          // specify type as Controller
+          init: metronomeModel, // intialize with the Controller
+          builder: (value) => barCard(width, height, 245),
+        ),
+      ),
+      Positioned(
+        left: (width / 4) * 2,
+        top: (height/16)*14,
+        child: GetBuilder<MetronomeModel>(
+          // specify type as Controller
+          init: metronomeModel, // intialize with the Controller
+          builder: (value) => barCard(width, height, 249),
+        ),
+      ),
+      Positioned(
+        left: (width / 4) * 3,
+        top: (height/16)*14,
+        child: GetBuilder<MetronomeModel>(
+          // specify type as Controller
+          init: metronomeModel, // intialize with the Controller
+          builder: (value) => barCard(width, height, 253),
+        ),
+      ),
     ]);
   }
 
@@ -131,14 +909,14 @@ class _HomePageState extends State<HomePage> {
     }
 
     return InkWell(
-      onDoubleTap:() => metronomeModel.active
+      onDoubleTap: () => metronomeModel.active
           ? metronomeModel.stop()
           : metronomeModel.start(),
       onTap: () => Get.defaultDialog(
         title: "Adjust BPM",
         content: SleekCircularSlider(
           appearance: CircularSliderAppearance(
-           // animDurationMultiplier: 5.0,
+            // animDurationMultiplier: 5.0,
             infoProperties: InfoProperties(
                 modifier: percentageModifier,
                 bottomLabelText: "BPM",
@@ -146,7 +924,7 @@ class _HomePageState extends State<HomePage> {
           ),
           min: 40,
           max: 240,
-          initialValue: 120,
+          initialValue: barBpmList[index].toDouble(),
           onChangeEnd: (double endValue) {
             setState(() {
               for (var i = 0; i < barBpmList.length - index; i++) {
@@ -157,16 +935,15 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
       child: Card(
-          color: metronomeModel.tickCounter.value != 0
-              ? getColor(index, metronomeModel.tickCounter.value)
-              : Colors.redAccent,
-          child: Container(
-            width: width / 4 ,
-            height: height / 16,
-            child: Text(barBpmList[index].toString()),
-          ),
+        color: metronomeModel.tickCounter.value != 0
+            ? getColor(index, metronomeModel.tickCounter.value)
+            : Colors.redAccent,
+        child: Container(
+          width: width / 4,
+          height: height / 16,
+          child: Text(barBpmList[index].toString(),textAlign: TextAlign.center,),
         ),
-
+      ),
     );
   }
 
@@ -174,8 +951,6 @@ class _HomePageState extends State<HomePage> {
     Color _activeColor = Colors.redAccent;
     if (tickCounter == index || tickCounter == index + 2) {
       _activeColor = Colors.greenAccent;
-    } else {
-      _activeColor = Colors.redAccent;
     }
     return _activeColor;
   }

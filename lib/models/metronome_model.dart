@@ -31,6 +31,7 @@ update();
     if (active || tickCounter.value != -1) {
       Timer(_getDuration(), _handleEvent);
     }
+
 audioService.playerOneOnClickSound();
 tickSignal.value = !tickSignal.value;
 tickCounter < 16 ?  tickCounter.value++ : tickCounter.value = 1;
