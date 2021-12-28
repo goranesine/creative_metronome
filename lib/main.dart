@@ -47,264 +47,12 @@ class _HomePageState extends State<HomePage> {
 
   double sliderValue = 0.5;
   List<int> barBpmList = [
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-    120,
-  ];
 
+  ];
+_HomePageState(){
+  List.generate(209, (index) => barBpmList.add(120));
+
+}
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -348,7 +96,7 @@ class _HomePageState extends State<HomePage> {
       ),
       Positioned(
         left: 0,
-        top: height/16,
+        top: height / 12,
         child: GetBuilder<MetronomeModel>(
           // specify type as Controller
           init: metronomeModel, // intialize with the Controller
@@ -357,7 +105,7 @@ class _HomePageState extends State<HomePage> {
       ),
       Positioned(
         left: width / 4,
-        top: height/16,
+        top: height / 12,
         child: GetBuilder<MetronomeModel>(
           // specify type as Controller
           init: metronomeModel, // intialize with the Controller
@@ -366,7 +114,7 @@ class _HomePageState extends State<HomePage> {
       ),
       Positioned(
         left: (width / 4) * 2,
-        top: height/16,
+        top: height / 12,
         child: GetBuilder<MetronomeModel>(
           // specify type as Controller
           init: metronomeModel, // intialize with the Controller
@@ -375,7 +123,7 @@ class _HomePageState extends State<HomePage> {
       ),
       Positioned(
         left: (width / 4) * 3,
-        top: height/16,
+        top: height / 12,
         child: GetBuilder<MetronomeModel>(
           // specify type as Controller
           init: metronomeModel, // intialize with the Controller
@@ -384,7 +132,7 @@ class _HomePageState extends State<HomePage> {
       ),
       Positioned(
         left: 0,
-        top: (height/16)*2,
+        top: (height / 12) * 2,
         child: GetBuilder<MetronomeModel>(
           // specify type as Controller
           init: metronomeModel, // intialize with the Controller
@@ -393,7 +141,7 @@ class _HomePageState extends State<HomePage> {
       ),
       Positioned(
         left: width / 4,
-        top: (height/16)*2,
+        top: (height / 12) * 2,
         child: GetBuilder<MetronomeModel>(
           // specify type as Controller
           init: metronomeModel, // intialize with the Controller
@@ -402,7 +150,7 @@ class _HomePageState extends State<HomePage> {
       ),
       Positioned(
         left: (width / 4) * 2,
-        top: (height/16)*2,
+        top: (height / 12) * 2,
         child: GetBuilder<MetronomeModel>(
           // specify type as Controller
           init: metronomeModel, // intialize with the Controller
@@ -411,7 +159,7 @@ class _HomePageState extends State<HomePage> {
       ),
       Positioned(
         left: (width / 4) * 3,
-        top: (height/16)*2,
+        top: (height / 12) * 2,
         child: GetBuilder<MetronomeModel>(
           // specify type as Controller
           init: metronomeModel, // intialize with the Controller
@@ -420,7 +168,7 @@ class _HomePageState extends State<HomePage> {
       ),
       Positioned(
         left: 0,
-        top: (height/16)*3,
+        top: (height / 12) * 3,
         child: GetBuilder<MetronomeModel>(
           // specify type as Controller
           init: metronomeModel, // intialize with the Controller
@@ -429,7 +177,7 @@ class _HomePageState extends State<HomePage> {
       ),
       Positioned(
         left: width / 4,
-        top: (height/16)*3,
+        top: (height / 12) * 3,
         child: GetBuilder<MetronomeModel>(
           // specify type as Controller
           init: metronomeModel, // intialize with the Controller
@@ -438,7 +186,7 @@ class _HomePageState extends State<HomePage> {
       ),
       Positioned(
         left: (width / 4) * 2,
-        top: (height/16)*3,
+        top: (height / 12) * 3,
         child: GetBuilder<MetronomeModel>(
           // specify type as Controller
           init: metronomeModel, // intialize with the Controller
@@ -447,7 +195,7 @@ class _HomePageState extends State<HomePage> {
       ),
       Positioned(
         left: (width / 4) * 3,
-        top: (height/16)*3,
+        top: (height / 12) * 3,
         child: GetBuilder<MetronomeModel>(
           // specify type as Controller
           init: metronomeModel, // intialize with the Controller
@@ -456,7 +204,7 @@ class _HomePageState extends State<HomePage> {
       ),
       Positioned(
         left: 0,
-        top: (height/16)*4,
+        top: (height / 12) * 4,
         child: GetBuilder<MetronomeModel>(
           // specify type as Controller
           init: metronomeModel, // intialize with the Controller
@@ -465,7 +213,7 @@ class _HomePageState extends State<HomePage> {
       ),
       Positioned(
         left: width / 4,
-        top: (height/16)*4,
+        top: (height / 12) * 4,
         child: GetBuilder<MetronomeModel>(
           // specify type as Controller
           init: metronomeModel, // intialize with the Controller
@@ -474,7 +222,7 @@ class _HomePageState extends State<HomePage> {
       ),
       Positioned(
         left: (width / 4) * 2,
-        top: (height/16)*4,
+        top: (height / 12) * 4,
         child: GetBuilder<MetronomeModel>(
           // specify type as Controller
           init: metronomeModel, // intialize with the Controller
@@ -483,7 +231,7 @@ class _HomePageState extends State<HomePage> {
       ),
       Positioned(
         left: (width / 4) * 3,
-        top: (height/16)*4,
+        top: (height / 12) * 4,
         child: GetBuilder<MetronomeModel>(
           // specify type as Controller
           init: metronomeModel, // intialize with the Controller
@@ -492,7 +240,7 @@ class _HomePageState extends State<HomePage> {
       ),
       Positioned(
         left: 0,
-        top: (height/16)*5,
+        top: (height / 12) * 5,
         child: GetBuilder<MetronomeModel>(
           // specify type as Controller
           init: metronomeModel, // intialize with the Controller
@@ -501,7 +249,7 @@ class _HomePageState extends State<HomePage> {
       ),
       Positioned(
         left: width / 4,
-        top: (height/16)*5,
+        top: (height / 12) * 5,
         child: GetBuilder<MetronomeModel>(
           // specify type as Controller
           init: metronomeModel, // intialize with the Controller
@@ -510,7 +258,7 @@ class _HomePageState extends State<HomePage> {
       ),
       Positioned(
         left: (width / 4) * 2,
-        top: (height/16)*5,
+        top: (height / 12) * 5,
         child: GetBuilder<MetronomeModel>(
           // specify type as Controller
           init: metronomeModel, // intialize with the Controller
@@ -519,7 +267,7 @@ class _HomePageState extends State<HomePage> {
       ),
       Positioned(
         left: (width / 4) * 3,
-        top: (height/16)*5,
+        top: (height / 12) * 5,
         child: GetBuilder<MetronomeModel>(
           // specify type as Controller
           init: metronomeModel, // intialize with the Controller
@@ -528,7 +276,7 @@ class _HomePageState extends State<HomePage> {
       ),
       Positioned(
         left: 0,
-        top: (height/16)*6,
+        top: (height / 12) * 6,
         child: GetBuilder<MetronomeModel>(
           // specify type as Controller
           init: metronomeModel, // intialize with the Controller
@@ -537,7 +285,7 @@ class _HomePageState extends State<HomePage> {
       ),
       Positioned(
         left: width / 4,
-        top: (height/16)*6,
+        top: (height / 12) * 6,
         child: GetBuilder<MetronomeModel>(
           // specify type as Controller
           init: metronomeModel, // intialize with the Controller
@@ -546,7 +294,7 @@ class _HomePageState extends State<HomePage> {
       ),
       Positioned(
         left: (width / 4) * 2,
-        top: (height/16)*6,
+        top: (height / 12) * 6,
         child: GetBuilder<MetronomeModel>(
           // specify type as Controller
           init: metronomeModel, // intialize with the Controller
@@ -555,7 +303,7 @@ class _HomePageState extends State<HomePage> {
       ),
       Positioned(
         left: (width / 4) * 3,
-        top: (height/16)*6,
+        top: (height / 12) * 6,
         child: GetBuilder<MetronomeModel>(
           // specify type as Controller
           init: metronomeModel, // intialize with the Controller
@@ -564,7 +312,7 @@ class _HomePageState extends State<HomePage> {
       ),
       Positioned(
         left: 0,
-        top: (height/16)*7,
+        top: (height / 12) * 7,
         child: GetBuilder<MetronomeModel>(
           // specify type as Controller
           init: metronomeModel, // intialize with the Controller
@@ -573,7 +321,7 @@ class _HomePageState extends State<HomePage> {
       ),
       Positioned(
         left: width / 4,
-        top: (height/16)*6,
+        top: (height / 12) * 6,
         child: GetBuilder<MetronomeModel>(
           // specify type as Controller
           init: metronomeModel, // intialize with the Controller
@@ -582,7 +330,7 @@ class _HomePageState extends State<HomePage> {
       ),
       Positioned(
         left: (width / 4) * 2,
-        top: (height/16)*6,
+        top: (height / 12) * 6,
         child: GetBuilder<MetronomeModel>(
           // specify type as Controller
           init: metronomeModel, // intialize with the Controller
@@ -591,7 +339,7 @@ class _HomePageState extends State<HomePage> {
       ),
       Positioned(
         left: (width / 4) * 3,
-        top: (height/16)*6,
+        top: (height / 12) * 6,
         child: GetBuilder<MetronomeModel>(
           // specify type as Controller
           init: metronomeModel, // intialize with the Controller
@@ -600,7 +348,7 @@ class _HomePageState extends State<HomePage> {
       ),
       Positioned(
         left: 0,
-        top: (height/16)*7,
+        top: (height / 12) * 7,
         child: GetBuilder<MetronomeModel>(
           // specify type as Controller
           init: metronomeModel, // intialize with the Controller
@@ -609,7 +357,7 @@ class _HomePageState extends State<HomePage> {
       ),
       Positioned(
         left: width / 4,
-        top: (height/16)*7,
+        top: (height / 12) * 7,
         child: GetBuilder<MetronomeModel>(
           // specify type as Controller
           init: metronomeModel, // intialize with the Controller
@@ -618,7 +366,7 @@ class _HomePageState extends State<HomePage> {
       ),
       Positioned(
         left: (width / 4) * 2,
-        top: (height/16)*7,
+        top: (height / 12) * 7,
         child: GetBuilder<MetronomeModel>(
           // specify type as Controller
           init: metronomeModel, // intialize with the Controller
@@ -627,7 +375,7 @@ class _HomePageState extends State<HomePage> {
       ),
       Positioned(
         left: (width / 4) * 3,
-        top: (height/16)*7,
+        top: (height / 12) * 7,
         child: GetBuilder<MetronomeModel>(
           // specify type as Controller
           init: metronomeModel, // intialize with the Controller
@@ -636,7 +384,7 @@ class _HomePageState extends State<HomePage> {
       ),
       Positioned(
         left: 0,
-        top: (height/16)*8,
+        top: (height / 12) * 8,
         child: GetBuilder<MetronomeModel>(
           // specify type as Controller
           init: metronomeModel, // intialize with the Controller
@@ -645,7 +393,7 @@ class _HomePageState extends State<HomePage> {
       ),
       Positioned(
         left: width / 4,
-        top: (height/16)*8,
+        top: (height / 12) * 8,
         child: GetBuilder<MetronomeModel>(
           // specify type as Controller
           init: metronomeModel, // intialize with the Controller
@@ -654,7 +402,7 @@ class _HomePageState extends State<HomePage> {
       ),
       Positioned(
         left: (width / 4) * 2,
-        top: (height/16)*8,
+        top: (height / 12) * 8,
         child: GetBuilder<MetronomeModel>(
           // specify type as Controller
           init: metronomeModel, // intialize with the Controller
@@ -663,7 +411,7 @@ class _HomePageState extends State<HomePage> {
       ),
       Positioned(
         left: (width / 4) * 3,
-        top: (height/16)*8,
+        top: (height / 12) * 8,
         child: GetBuilder<MetronomeModel>(
           // specify type as Controller
           init: metronomeModel, // intialize with the Controller
@@ -672,7 +420,7 @@ class _HomePageState extends State<HomePage> {
       ),
       Positioned(
         left: 0,
-        top: (height/16)*9,
+        top: (height / 12) * 9,
         child: GetBuilder<MetronomeModel>(
           // specify type as Controller
           init: metronomeModel, // intialize with the Controller
@@ -681,7 +429,7 @@ class _HomePageState extends State<HomePage> {
       ),
       Positioned(
         left: width / 4,
-        top: (height/16)*9,
+        top: (height / 12) * 9,
         child: GetBuilder<MetronomeModel>(
           // specify type as Controller
           init: metronomeModel, // intialize with the Controller
@@ -690,7 +438,7 @@ class _HomePageState extends State<HomePage> {
       ),
       Positioned(
         left: (width / 4) * 2,
-        top: (height/16)*9,
+        top: (height / 12) * 9,
         child: GetBuilder<MetronomeModel>(
           // specify type as Controller
           init: metronomeModel, // intialize with the Controller
@@ -699,7 +447,7 @@ class _HomePageState extends State<HomePage> {
       ),
       Positioned(
         left: (width / 4) * 3,
-        top: (height/16)*9,
+        top: (height / 12) * 9,
         child: GetBuilder<MetronomeModel>(
           // specify type as Controller
           init: metronomeModel, // intialize with the Controller
@@ -708,7 +456,7 @@ class _HomePageState extends State<HomePage> {
       ),
       Positioned(
         left: 0,
-        top: (height/16)*10,
+        top: (height / 12) * 10,
         child: GetBuilder<MetronomeModel>(
           // specify type as Controller
           init: metronomeModel, // intialize with the Controller
@@ -717,7 +465,7 @@ class _HomePageState extends State<HomePage> {
       ),
       Positioned(
         left: width / 4,
-        top: (height/16)*10,
+        top: (height / 12) * 10,
         child: GetBuilder<MetronomeModel>(
           // specify type as Controller
           init: metronomeModel, // intialize with the Controller
@@ -726,7 +474,7 @@ class _HomePageState extends State<HomePage> {
       ),
       Positioned(
         left: (width / 4) * 2,
-        top: (height/16)*10,
+        top: (height / 12) * 10,
         child: GetBuilder<MetronomeModel>(
           // specify type as Controller
           init: metronomeModel, // intialize with the Controller
@@ -735,7 +483,7 @@ class _HomePageState extends State<HomePage> {
       ),
       Positioned(
         left: (width / 4) * 3,
-        top: (height/16)*10,
+        top: (height / 12) * 10,
         child: GetBuilder<MetronomeModel>(
           // specify type as Controller
           init: metronomeModel, // intialize with the Controller
@@ -744,7 +492,7 @@ class _HomePageState extends State<HomePage> {
       ),
       Positioned(
         left: 0,
-        top: (height/16)*11,
+        top: (height / 12) * 11,
         child: GetBuilder<MetronomeModel>(
           // specify type as Controller
           init: metronomeModel, // intialize with the Controller
@@ -753,7 +501,7 @@ class _HomePageState extends State<HomePage> {
       ),
       Positioned(
         left: width / 4,
-        top: (height/16)*11,
+        top: (height / 12) * 11,
         child: GetBuilder<MetronomeModel>(
           // specify type as Controller
           init: metronomeModel, // intialize with the Controller
@@ -762,7 +510,7 @@ class _HomePageState extends State<HomePage> {
       ),
       Positioned(
         left: (width / 4) * 2,
-        top: (height/16)*11,
+        top: (height / 12) * 11,
         child: GetBuilder<MetronomeModel>(
           // specify type as Controller
           init: metronomeModel, // intialize with the Controller
@@ -771,127 +519,19 @@ class _HomePageState extends State<HomePage> {
       ),
       Positioned(
         left: (width / 4) * 3,
-        top: (height/16)*11,
+        top: (height / 12) * 11,
         child: GetBuilder<MetronomeModel>(
           // specify type as Controller
           init: metronomeModel, // intialize with the Controller
           builder: (value) => barCard(width, height, 205),
         ),
       ),
-      Positioned(
-        left: 0,
-        top: (height/16)*12,
-        child: GetBuilder<MetronomeModel>(
-          // specify type as Controller
-          init: metronomeModel, // intialize with the Controller
-          builder: (value) => barCard(width, height, 209),
-        ),
-      ),
-      Positioned(
-        left: width / 4,
-        top: (height/16)*12,
-        child: GetBuilder<MetronomeModel>(
-          // specify type as Controller
-          init: metronomeModel, // intialize with the Controller
-          builder: (value) => barCard(width, height, 213),
-        ),
-      ),
-      Positioned(
-        left: (width / 4) * 2,
-        top: (height/16)*12,
-        child: GetBuilder<MetronomeModel>(
-          // specify type as Controller
-          init: metronomeModel, // intialize with the Controller
-          builder: (value) => barCard(width, height, 217),
-        ),
-      ),
-      Positioned(
-        left: (width / 4) * 3,
-        top: (height/16)*12,
-        child: GetBuilder<MetronomeModel>(
-          // specify type as Controller
-          init: metronomeModel, // intialize with the Controller
-          builder: (value) => barCard(width, height, 221),
-        ),
-      ),
-      Positioned(
-        left: 0,
-        top: (height/16)*13,
-        child: GetBuilder<MetronomeModel>(
-          // specify type as Controller
-          init: metronomeModel, // intialize with the Controller
-          builder: (value) => barCard(width, height, 225),
-        ),
-      ),
-      Positioned(
-        left: width / 4,
-        top: (height/16)*13,
-        child: GetBuilder<MetronomeModel>(
-          // specify type as Controller
-          init: metronomeModel, // intialize with the Controller
-          builder: (value) => barCard(width, height, 229),
-        ),
-      ),
-      Positioned(
-        left: (width / 4) * 2,
-        top: (height/16)*13,
-        child: GetBuilder<MetronomeModel>(
-          // specify type as Controller
-          init: metronomeModel, // intialize with the Controller
-          builder: (value) => barCard(width, height, 233),
-        ),
-      ),
-      Positioned(
-        left: (width / 4) * 3,
-        top: (height/16)*13,
-        child: GetBuilder<MetronomeModel>(
-          // specify type as Controller
-          init: metronomeModel, // intialize with the Controller
-          builder: (value) => barCard(width, height, 237),
-        ),
-      ),
-      Positioned(
-        left: 0,
-        top: (height/16)*14,
-        child: GetBuilder<MetronomeModel>(
-          // specify type as Controller
-          init: metronomeModel, // intialize with the Controller
-          builder: (value) => barCard(width, height, 241),
-        ),
-      ),
-      Positioned(
-        left: width / 4,
-        top: (height/16)*14,
-        child: GetBuilder<MetronomeModel>(
-          // specify type as Controller
-          init: metronomeModel, // intialize with the Controller
-          builder: (value) => barCard(width, height, 245),
-        ),
-      ),
-      Positioned(
-        left: (width / 4) * 2,
-        top: (height/16)*14,
-        child: GetBuilder<MetronomeModel>(
-          // specify type as Controller
-          init: metronomeModel, // intialize with the Controller
-          builder: (value) => barCard(width, height, 249),
-        ),
-      ),
-      Positioned(
-        left: (width / 4) * 3,
-        top: (height/16)*14,
-        child: GetBuilder<MetronomeModel>(
-          // specify type as Controller
-          init: metronomeModel, // intialize with the Controller
-          builder: (value) => barCard(width, height, 253),
-        ),
-      ),
+
+
     ]);
   }
 
   Widget barCard(double width, double height, int index) {
-    //  double barBpm = 0.5;
-    int _currentValue = 120;
     String percentageModifier(double value) {
       final roundedValue = value.toInt().toString();
       return '$roundedValue';
@@ -903,7 +543,7 @@ class _HomePageState extends State<HomePage> {
       metronomeModel.tempo.value = barBpmList[index];
       //   print(metronomeModel.tickCounter.value);
     } else if (metronomeModel.tickCounter.value == index + 3) {
-      metronomeModel.tempo.value = metronomeModel.tickCounter.value != 16
+      metronomeModel.tempo.value = metronomeModel.tickCounter.value != 192
           ? barBpmList[index + 4]
           : barBpmList[1];
     }
@@ -928,7 +568,7 @@ class _HomePageState extends State<HomePage> {
           onChangeEnd: (double endValue) {
             setState(() {
               for (var i = 0; i < barBpmList.length - index; i++) {
-                barBpmList[15 - i] = endValue.toInt();
+                barBpmList[208 - i] = endValue.toInt();
               }
             });
           },
@@ -940,8 +580,12 @@ class _HomePageState extends State<HomePage> {
             : Colors.redAccent,
         child: Container(
           width: width / 4,
-          height: height / 16,
-          child: Text(barBpmList[index].toString(),textAlign: TextAlign.center,),
+          height: height / 12,
+          child: Text(
+            barBpmList[index].toString(),
+            textAlign: TextAlign.center,
+
+          ),
         ),
       ),
     );
@@ -949,7 +593,8 @@ class _HomePageState extends State<HomePage> {
 
   Color getColor(int index, int tickCounter) {
     Color _activeColor = Colors.redAccent;
-    if (tickCounter == index || tickCounter == index + 2) {
+    if (tickCounter == index && metronomeModel.tickSignal.value == true ||
+        tickCounter == index + 2 && metronomeModel.tickSignal.value == true) {
       _activeColor = Colors.greenAccent;
     }
     return _activeColor;

@@ -8,7 +8,7 @@ class AudioService extends GetxController {
   AudioPlayer ?backgroundPlayer;
 
   AudioPlayer advancedPlayer = AudioPlayer(mode: PlayerMode.LOW_LATENCY);
-
+ RxInt tickSignalCode = 0.obs;
 //  String? localFilePath;
   // String? localAudioCacheURI;
   final List<String> playerOnePlaySounds = [
@@ -54,6 +54,10 @@ RxInt beatCounter = 0.obs;
     }
    // print(beatCounter.value);
     beatCounter.value < 4 ? beatCounter.value++ : beatCounter.value = 1;
+
+  }
+  
+  void delayedPlay(){
 
   }
 
