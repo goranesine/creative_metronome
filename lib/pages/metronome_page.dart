@@ -34,14 +34,45 @@ class _HomePageTestState extends State<HomePageTest> {
             height: height / 12,
           ),
           itemBuilder: (context, index) {
-            return barCard( index);
+            return barCard( index+1);
           },
         ),
 
-          GetBuilder(
-            init: MetronomeModel(),
-            builder: (value)=>
-                Text("Active bar index : ${metronomeModel.activeBarIndex}",textScaleFactor: 2,),
+          Positioned(
+            top: 10,
+            child: GetBuilder(
+              init: MetronomeModel(),
+              builder: (value)=>
+                  Text("Active bar index : ${metronomeModel.activeBarIndex}",textScaleFactor: 3,),
+            ),
+          ), Positioned(
+            top: 50,
+            child: GetBuilder(
+              init: MetronomeModel(),
+              builder: (value)=>
+                  Text("Tick counter : ${metronomeModel.tickCounter}",textScaleFactor: 3,),
+            ),
+          ), Positioned(
+            top: 100,
+            child: GetBuilder(
+              init: MetronomeModel(),
+              builder: (value)=>
+                  Text("Tempo : ${metronomeModel.tempo}",textScaleFactor: 3,),
+            ),
+          ),Positioned(
+            top: 150,
+            child: GetBuilder(
+              init: MetronomeModel(),
+              builder: (value)=>
+                  Text("Active : ${metronomeModel.active}",textScaleFactor: 3,),
+            ),
+          ),Positioned(
+            top: 200,
+            child: GetBuilder(
+              init: MetronomeModel(),
+              builder: (value)=>
+                  Text("Tick signal : ${metronomeModel.tickSignal}",textScaleFactor: 3,),
+            ),
           ),],
       );
 
@@ -81,14 +112,14 @@ class _HomePageTestState extends State<HomePageTest> {
       child: GetBuilder(
         init: MetronomeModel(),
         builder: (value)=>Card(
-          color: metronomeModel.tickSignal.value == true && metronomeModel.activeBarIndex.value == index +1
+          color: metronomeModel.tickSignal.value == true && metronomeModel.activeBarIndex.value == index
               ? Colors.greenAccent
               : Colors.redAccent,
           child: Container(
             // width: width / 4,
             // height: height / 12,
             child: Text(
-              metronomeModel.barBpmList[index].toString(),
+              index.toString(),
               textAlign: TextAlign.center,
             ),
           ),

@@ -10,8 +10,8 @@ class MetronomeModel extends GetxController {
   RxInt tempo = 120.obs;
   bool active = false;
   RxBool tickSignal = false.obs;
-  RxInt tickCounter = 0.obs;
-  RxInt activeBarIndex = 0.obs;
+  RxInt tickCounter = 187.obs;
+  RxInt activeBarIndex = 47.obs;
 
   MetronomeModel() {
     List.generate(48, (index) => barBpmList.add(120));
@@ -27,12 +27,12 @@ class MetronomeModel extends GetxController {
   }
 
   void calculateActiveBar() {
-    if (tickCounter.value % 4 == 0 && activeBarIndex.value < 48) {
+    if (tickCounter.value % 4 == 0 && activeBarIndex.value < 48 && tickCounter.value >3) {
       activeBarIndex.value++;
 
       update();
-    }else if(activeBarIndex.value > 47){
-      activeBarIndex.value = -1;
+    }else if(activeBarIndex.value > 48){
+      activeBarIndex.value = 1;
       update();
       start();
     }
@@ -46,16 +46,16 @@ class MetronomeModel extends GetxController {
 
   void stop() {
     active = false;
-    tickCounter.value = -1;
-    audioService.beatCounter.value = -1;
-    activeBarIndex.value = 0;
+    tickCounter.value = 0;
+    audioService.beatCounter.value = 0;
+    activeBarIndex.value = 1;
     update();
   }
 
   void _handleEvent() {
     //  calculateActiveBar(index);
-    if (active || tickCounter.value != -1) {
-      tempo.value = barBpmList[activeBarIndex.value];
+    if (active || tickCounter.value != 0) {
+      tempo.value = barBpmList[activeBarIndex.value-1];
 update();
       Timer(_getDuration(), () => _handleEvent());
 
@@ -65,22 +65,25 @@ update();
   }
 
   void playSound() {
-    audioService.playerOneOnClickSound();
     tickSignal.value = !tickSignal.value;
-    if(tickCounter < 192){
+    if(tickCounter.value < 192 && active == true){
       tickCounter.value++;
+
       update();
-    } else{ tickCounter.value = -1;
-      audioService.beatCounter.value = -1;
+    } else{ tickCounter.value = 1;
+      audioService.beatCounter.value = 1;
       activeBarIndex.value = 1;
+      tickCounter.value = 0;
       update();}
+   active == true ? audioService.playerOneOnClickSound() : active = true;
 
 
   }
 
+
   Duration _getDuration() {
     //  print(tempo);
-    final time = 60 / barBpmList[activeBarIndex.value];
+    final time = 60 / barBpmList[activeBarIndex.value-1];
     return Duration(
       seconds: time.toInt(),
       milliseconds: (time * 1000).toInt() % 1000,
