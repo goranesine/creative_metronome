@@ -5,12 +5,10 @@ import 'package:get/get.dart';
 
 class AudioService extends GetxController {
   final player = AudioCache();
-  AudioPlayer ?backgroundPlayer;
+  AudioPlayer? backgroundPlayer;
 
   AudioPlayer advancedPlayer = AudioPlayer(mode: PlayerMode.LOW_LATENCY);
- RxInt tickSignalCode = 0.obs;
-//  String? localFilePath;
-  // String? localAudioCacheURI;
+
   final List<String> playerOnePlaySounds = [
     "playerOnePlay1.wav",
     "playerOnePlay2.wav",
@@ -22,75 +20,30 @@ class AudioService extends GetxController {
 
   RxBool playOrderPlayerOne = false.obs;
   bool playOrderPlayerTwo = false;
-RxInt beatCounter = 0.obs;
-  AudioService() {
+  RxInt beatCounter = 0.obs;
 
+  AudioService() {
     player.loadAll([playerOnePlaySounds.first]);
- //   playBackgroundMusic();
+    //   playBackgroundMusic();
   }
 
   Future playBackgroundMusic() async {
     // backgroundPlayer.stop();
-    backgroundPlayer = await player.loop("backgroundMusic.mp3",stayAwake: true);
+    backgroundPlayer =
+        await player.loop("backgroundMusic.mp3", stayAwake: true);
   }
 
-  void testPlay(){
-    player.play(playerTwoPlaySounds.first,
-        mode: PlayerMode.LOW_LATENCY);
+  void playAccent() async {
+    await player.play(playerOnePlaySounds.first, mode: PlayerMode.LOW_LATENCY);
   }
 
-
-  void playerOneOnClickSound() async {
-    beatCounter.value == 0 ? beatCounter++ : null;
-  update();
-    if (beatCounter.value == 1) {
-
-     await player.play(playerOnePlaySounds.first,
-          mode: PlayerMode.LOW_LATENCY);
-
-    } else {
-      await player.play(playerOnePlaySounds.last, mode: PlayerMode.LOW_LATENCY);
-
-    }
-   // print(beatCounter.value);
-    beatCounter.value < 4 ? beatCounter.value++ : beatCounter.value = 1;
-
+  void playDownNote() async {
+    await player.play(playerOnePlaySounds.last, mode: PlayerMode.LOW_LATENCY);
   }
-  
-  void delayedPlay(){
-
-  }
-
-  void playerTwoOnClickSound() async {
-    if (playOrderPlayerTwo == false) {
-      await player.play(playerTwoPlaySounds.first,
-          mode: PlayerMode.LOW_LATENCY);
-      playOrderPlayerTwo == false
-          ? playOrderPlayerTwo = true
-          : playOrderPlayerTwo = false;
-    } else {
-      await player.play(playerTwoPlaySounds.last, mode: PlayerMode.LOW_LATENCY);
-      playOrderPlayerTwo == false
-          ? playOrderPlayerTwo = true
-          : playOrderPlayerTwo = false;
-    }
-  }
-
-  void startLoop() async {
-    for(var i=0; i<4;i++){
-      Future.delayed(Duration(seconds: i),()=>playFreezeSound());
-    }
-  }
-
-  void playFreezeSound() async {
-    await player.play("playerFreezed.wav");
-  }
-
-  void stopLoop() async {}
 
   @override
   void dispose() {
-    backgroundPlayer?.dispose();
+    player.clearAll();
     super.dispose();
   }
 }

@@ -5,7 +5,6 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:math_game/models/metronome_model.dart';
 import 'package:math_game/services/audio_sevice.dart';
-import 'package:math_game/services/screen_service.dart';
 import 'package:math_game/widgets/custom_delegate.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 
@@ -17,6 +16,7 @@ class HomePageTest extends StatefulWidget {
 
 class _HomePageTestState extends State<HomePageTest> {
   final metronomeModel = Get.find<MetronomeModel>();
+  final audioService = Get.find<AudioService>();
 
   double sliderValue = 0.5;
 
@@ -39,35 +39,35 @@ class _HomePageTestState extends State<HomePageTest> {
         ),
 
           Positioned(
-            top: 10,
+            top: height /2 -100,
             child: GetBuilder(
               init: MetronomeModel(),
               builder: (value)=>
                   Text("Active bar index : ${metronomeModel.activeBarIndex}",textScaleFactor: 3,),
             ),
           ), Positioned(
-            top: 50,
+            top: height /2 -50,
             child: GetBuilder(
               init: MetronomeModel(),
               builder: (value)=>
                   Text("Tick counter : ${metronomeModel.tickCounter}",textScaleFactor: 3,),
             ),
           ), Positioned(
-            top: 100,
+            top: height /2,
             child: GetBuilder(
               init: MetronomeModel(),
               builder: (value)=>
-                  Text("Tempo : ${metronomeModel.tempo}",textScaleFactor: 3,),
+                  Text("Play accent : ${metronomeModel.playAccent}",textScaleFactor: 3,),
             ),
           ),Positioned(
-            top: 150,
+            top: height /2 +50,
             child: GetBuilder(
               init: MetronomeModel(),
               builder: (value)=>
                   Text("Active : ${metronomeModel.active}",textScaleFactor: 3,),
             ),
           ),Positioned(
-            top: 200,
+            top: height /2 +100,
             child: GetBuilder(
               init: MetronomeModel(),
               builder: (value)=>
@@ -103,9 +103,9 @@ class _HomePageTestState extends State<HomePageTest> {
           ),
           min: 40,
           max: 240,
-          initialValue: metronomeModel.barBpmList[index].toDouble(),
+          initialValue: metronomeModel.barBpmList[index-1].toDouble(),
           onChangeEnd: (double endValue) {
-            metronomeModel.updateBpmMap(index, endValue);
+            metronomeModel.updateBpmMap(index-1, endValue);
           },
         ),
       ),
@@ -119,7 +119,7 @@ class _HomePageTestState extends State<HomePageTest> {
             // width: width / 4,
             // height: height / 12,
             child: Text(
-              index.toString(),
+              metronomeModel.barBpmList[index-1].toString(),
               textAlign: TextAlign.center,
             ),
           ),

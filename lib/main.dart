@@ -5,7 +5,6 @@
   import 'package:get/get.dart';
 import 'package:math_game/pages/metronome_page.dart';
   import 'package:math_game/services/audio_sevice.dart';
-  import 'package:math_game/services/screen_service.dart';
   import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 
   import 'models/metronome_model.dart';
@@ -16,7 +15,6 @@ void main() {
   Wakelock.enable();
   Get.put(AudioService());
 
-  Get.put(ScreenService());
   Get.put(MetronomeModel());
   runApp(MyApp());
 }
