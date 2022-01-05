@@ -20,17 +20,17 @@ class AudioService extends GetxController {
 
   RxBool playOrderPlayerOne = false.obs;
   bool playOrderPlayerTwo = false;
-  RxInt beatCounter = 0.obs;
 
   AudioService() {
-    player.loadAll([playerOnePlaySounds.first]);
+    playAtInitWithMutedSound();
+  //  player.loadAll([playerOnePlaySounds.first]);
     //   playBackgroundMusic();
   }
 
-  Future playBackgroundMusic() async {
-    // backgroundPlayer.stop();
-    backgroundPlayer =
-        await player.loop("backgroundMusic.mp3", stayAwake: true);
+  void playAtInitWithMutedSound() async {
+    await player.play(playerOnePlaySounds.first, mode: PlayerMode.LOW_LATENCY,volume: 0.0);
+    await player.play(playerOnePlaySounds.last, mode: PlayerMode.LOW_LATENCY,volume: 0.0);
+
   }
 
   void playAccent() async {

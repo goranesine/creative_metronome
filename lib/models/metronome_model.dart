@@ -22,7 +22,6 @@ class MetronomeModel extends GetxController {
   void metronomeInitState() {
     updateBpmMap(0, 40);
     playAccent = true;
-    audioService.beatCounter.value = 1;
     active = false;
     tickSignal.value = false;
     tickCounter.value = 0;
@@ -31,7 +30,6 @@ class MetronomeModel extends GetxController {
   }
 
   void metronomeAfterLastBarState() {
-    audioService.beatCounter.value = 1;
     playAccent = true;
     active = true;
     tickSignal.value = true;
@@ -42,7 +40,6 @@ class MetronomeModel extends GetxController {
 
   void metronomeAfterStopBarState() {
     playAccent = true;
-    audioService.beatCounter.value = 0;
     active = false;
     tickSignal.value = false;
     tickCounter.value = 0;
