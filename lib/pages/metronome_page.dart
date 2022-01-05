@@ -1,5 +1,8 @@
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
@@ -9,12 +12,12 @@ import 'package:math_game/widgets/custom_delegate.dart';
 import 'package:neon/neon.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 
-class HomePageTest extends StatefulWidget {
+class CreativeMetronomePage extends StatefulWidget {
   @override
-  State<HomePageTest> createState() => _HomePageTestState();
+  State<CreativeMetronomePage> createState() => _CreativeMetronomePageState();
 }
 
-class _HomePageTestState extends State<HomePageTest> {
+class _CreativeMetronomePageState extends State<CreativeMetronomePage> {
   final metronomeModel = Get.find<MetronomeModel>();
   final audioService = Get.find<AudioService>();
 
@@ -22,6 +25,8 @@ class _HomePageTestState extends State<HomePageTest> {
 
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+
     double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Stack(
@@ -37,7 +42,6 @@ class _HomePageTestState extends State<HomePageTest> {
             return barCard(index + 1);
           },
         ),
-       
       ],
     );
   }
@@ -49,33 +53,49 @@ class _HomePageTestState extends State<HomePageTest> {
     }
 
     return InkWell(
-      onDoubleTap: () => metronomeModel.active
-          ? metronomeModel.stop()
-          : metronomeModel.start(),
-      onTap: () => Get.defaultDialog(
-        title: "Adjust BPM",
-        content: SleekCircularSlider(
-          appearance: CircularSliderAppearance(
-            infoProperties: InfoProperties(
-                modifier: percentageModifier,
-                bottomLabelText: "BPM",
-                mainLabelStyle: TextStyle(color: Colors.redAccent)),
-          ),
-          min: 40,
-          max: 240,
-          initialValue: metronomeModel.barBpmList[index - 1].toDouble(),
-          onChangeEnd: (double endValue) {
-            metronomeModel.updateBpmMap(index - 1, endValue);
-          },
-        ),
-      ),
-      child: GetBuilder(
-        init: MetronomeModel(),
-        builder: (value) => metronomeModel.tickSignal.value == true &&
-                metronomeModel.activeBarIndex.value == index
-            ? Image.asset("assets/greenBlock.png")
-            : Image.asset("assets/redBlock.png"),
-      ),
-    );
+        onDoubleTap: () => metronomeModel.active
+            ? metronomeModel.stop()
+            : metronomeModel.start(),
+        onTap: () => Get.defaultDialog(
+              title: "Adjust BPM",
+              content: SleekCircularSlider(
+                appearance: CircularSliderAppearance(
+                  infoProperties: InfoProperties(
+                      modifier: percentageModifier,
+                      bottomLabelText: "BPM",
+                      mainLabelStyle: TextStyle(color: Colors.redAccent)),
+                ),
+                min: 40,
+                max: 240,
+                initialValue: metronomeModel.barBpmList[index - 1].toDouble(),
+                onChangeEnd: (double endValue) {
+                  metronomeModel.updateBpmMap(index - 1, endValue);
+                },
+              ),
+            ),
+        child: GetBuilder(
+            init: MetronomeModel(),
+            builder: (value) => Container(
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: metronomeModel.tickSignal.value == true &&
+                            metronomeModel.activeBarIndex.value == index
+                        ? AssetImage("assets/greenBlock.png")
+                        : AssetImage("assets/redBlock.png"),
+                  ),
+                ),
+                child: Center(
+                  child: Text(
+                      index != 1
+                      ? metronomeModel.barBpmList[index-1] == metronomeModel.barBpmList[index-2]
+                   ?   ""
+                   : metronomeModel.barBpmList[index-1].toString():metronomeModel.barBpmList[index-1].toString(),
+                    style: TextStyle(
+                      color: Colors.white54,
+                      decorationStyle: TextDecorationStyle.dotted,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),)));
   }
 }

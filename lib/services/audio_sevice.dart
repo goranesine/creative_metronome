@@ -22,7 +22,7 @@ class AudioService extends GetxController {
   bool playOrderPlayerTwo = false;
 
   AudioService() {
-    playAtInitWithMutedSound();
+ //   playAtInitWithMutedSound();
   //  player.loadAll([playerOnePlaySounds.first]);
     //   playBackgroundMusic();
   }
