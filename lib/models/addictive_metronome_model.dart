@@ -20,6 +20,7 @@ class AddictiveMetronomeModel extends GetxController {
     if (beatStatusList.length > 1 && beatStatusList.length < 8) {
       beatStatusList.add(RxBool(false));
       update();
+      calculateBeatDurationInMilliseconds();
     }
   }
 
@@ -27,14 +28,25 @@ class AddictiveMetronomeModel extends GetxController {
     if (beatStatusList.length > 2) {
       beatStatusList.removeLast();
       update();
+      calculateBeatDurationInMilliseconds();
     }
+  }
+
+  void calculateBeatDurationInMilliseconds() {
+    double numberOfBeatsInOneMinute = (beatStatusList.length /4)*tempoInBpm.value ;
+   // double numberOfBars = tempoInBpm.value / 4;
+   // double oneBarDuration =
+
+      beatDurationInMilliseconds = Duration(milliseconds: 60000.0 ~/ numberOfBeatsInOneMinute);
+update();
+print(numberOfBeatsInOneMinute);
   }
 
   void updateTempoInBpm(int newTempo) {
     if (tempoInBpm.value > 40 && tempoInBpm.value < 240) {
       tempoInBpm.value = newTempo;
-      beatDurationInMilliseconds = Duration(milliseconds: newTempo ~/ 0.24);
       update();
+      calculateBeatDurationInMilliseconds();
     }
   }
 
@@ -73,6 +85,5 @@ class AddictiveMetronomeModel extends GetxController {
     beatStatusList[beatCounter - 1].value == true
         ? audioService.playAccent()
         : audioService.playDownNote();
-    print(beatCounter);
   }
 }
