@@ -5,7 +5,7 @@ import 'package:math_game/services/audio_sevice.dart';
 
 class AddictiveMetronomeModel extends GetxController {
   final audioService = Get.find<AudioService>();
-  RxInt beatCounter = 0.obs;
+  RxInt beatCounter = 1.obs;
   RxInt tempoInBpm = 120.obs;
   RxBool isMetronomePlaying = false.obs;
   Duration beatDurationInMilliseconds = Duration();
@@ -13,6 +13,7 @@ class AddictiveMetronomeModel extends GetxController {
       <RxBool>[RxBool(true), RxBool(false), RxBool(false), RxBool(false)].obs;
 
   AddictiveMetronomeModel() {
+    beatCounter.value = -1;
     calculateBeatDurationInMilliseconds();
   }
 
@@ -63,7 +64,7 @@ update();
       initMetronome();
     } else {
       isMetronomePlaying.value = false;
-      beatCounter.value = 0;
+      beatCounter.value = -1;
 
       update();
     }
