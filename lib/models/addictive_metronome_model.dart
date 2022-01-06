@@ -5,20 +5,22 @@ import 'package:math_game/services/audio_sevice.dart';
 
 class AddictiveMetronomeModel extends GetxController {
   final audioService = Get.find<AudioService>();
-  int beatCounter = 0;
+  RxInt beatCounter = 0.obs;
   RxInt tempoInBpm = 120.obs;
   RxBool isMetronomePlaying = false.obs;
-  Duration beatDurationInMilliseconds = Duration(milliseconds: 500);
+  Duration beatDurationInMilliseconds = Duration();
   RxList<RxBool> beatStatusList =
       <RxBool>[RxBool(true), RxBool(false), RxBool(false), RxBool(false)].obs;
 
   AddictiveMetronomeModel() {
-    //  initMetronome();
+    calculateBeatDurationInMilliseconds();
   }
 
   void addBeat() {
     if (beatStatusList.length > 1 && beatStatusList.length < 8) {
       beatStatusList.add(RxBool(false));
+  //    beatCounter = 0;
+
       update();
       calculateBeatDurationInMilliseconds();
     }
@@ -27,23 +29,27 @@ class AddictiveMetronomeModel extends GetxController {
   void removeBeat() {
     if (beatStatusList.length > 2) {
       beatStatusList.removeLast();
+   //   beatCounter = 0;
+
       update();
       calculateBeatDurationInMilliseconds();
     }
   }
 
-  void calculateBeatDurationInMilliseconds() {
-    double numberOfBeatsInOneMinute = (beatStatusList.length /4)*tempoInBpm.value ;
-   // double numberOfBars = tempoInBpm.value / 4;
-   // double oneBarDuration =
+  void setBeatAccent(int index){
+bool oldValue = beatStatusList[index].value;
+beatStatusList[index].value = !oldValue;
+    update();
+  }
 
-      beatDurationInMilliseconds = Duration(milliseconds: 60000.0 ~/ numberOfBeatsInOneMinute);
+  void calculateBeatDurationInMilliseconds() {
+
+      beatDurationInMilliseconds = Duration(milliseconds: 60000.0 ~/ tempoInBpm.value);
 update();
-print(numberOfBeatsInOneMinute);
   }
 
   void updateTempoInBpm(int newTempo) {
-    if (tempoInBpm.value > 40 && tempoInBpm.value < 240) {
+    if (tempoInBpm.value >= 40 && tempoInBpm.value <= 240) {
       tempoInBpm.value = newTempo;
       update();
       calculateBeatDurationInMilliseconds();
@@ -57,7 +63,7 @@ print(numberOfBeatsInOneMinute);
       initMetronome();
     } else {
       isMetronomePlaying.value = false;
-      beatCounter = 0;
+      beatCounter.value = 0;
 
       update();
     }
@@ -70,19 +76,19 @@ print(numberOfBeatsInOneMinute);
   }
 
   void updateBeatCounter() {
-    if (beatCounter < beatStatusList.length) {
+    if (beatCounter < beatStatusList.length-1) {
       beatCounter++;
       update();
       playSound();
     } else {
-      beatCounter = 1;
+      beatCounter.value = 0;
       update();
       playSound();
     }
   }
 
   void playSound() {
-    beatStatusList[beatCounter - 1].value == true
+    beatStatusList[beatCounter.value ].value == true
         ? audioService.playAccent()
         : audioService.playDownNote();
   }

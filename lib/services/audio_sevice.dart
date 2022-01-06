@@ -10,8 +10,8 @@ class AudioService extends GetxController {
   AudioPlayer advancedPlayer = AudioPlayer(mode: PlayerMode.LOW_LATENCY);
 
   final List<String> playerOnePlaySounds = [
-    "playerOnePlay1.wav",
-    "playerOnePlay2.wav",
+    "accent.wav",
+    "click.wav",
   ];
   final List<String> playerTwoPlaySounds = [
     "playerTwoPlay1.wav",
@@ -22,7 +22,7 @@ class AudioService extends GetxController {
   bool playOrderPlayerTwo = false;
 
   AudioService() {
- //   playAtInitWithMutedSound();
+   playAtInitWithMutedSound();
   //  player.loadAll([playerOnePlaySounds.first]);
     //   playBackgroundMusic();
   }
