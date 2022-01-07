@@ -17,6 +17,8 @@ class AddictiveMetronomeModel extends GetxController {
     calculateBeatDurationInMilliseconds();
   }
 
+
+
   void addBeat() {
     if (beatStatusList.length > 1 && beatStatusList.length < 8) {
       beatStatusList.add(RxBool(false));

@@ -6,8 +6,8 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:math_game/models/addictive_metronome_model.dart';
-import 'package:math_game/widgets/step_sequencer.dart';
-import 'package:sleek_circular_slider/sleek_circular_slider.dart';
+import 'package:horizontal_picker/horizontal_picker.dart';
+import 'package:neon/neon.dart';
 
 class AddictiveMetronomePage extends StatelessWidget {
   final addictiveMetronomeModel = Get.find<AddictiveMetronomeModel>();
@@ -22,7 +22,6 @@ class AddictiveMetronomePage extends StatelessWidget {
 
     double _width = MediaQuery.of(context).size.width;
     double _height = MediaQuery.of(context).size.height;
-
     return Stack(
       children: [
         Column(
@@ -45,13 +44,18 @@ class AddictiveMetronomePage extends StatelessWidget {
                                     .setBeatAccent(index),
                                 child: Container(
                                   decoration: BoxDecoration(
-                                      color: addictiveMetronomeModel
-                                                  .beatCounter.value ==
-                                              index
-                                          ? Colors.grey
-                                          : Colors.transparent,
+                                      boxShadow: [BoxShadow(
+                                        blurRadius: 10.0,
+                                          spreadRadius: 8.0,
+                                          color:addictiveMetronomeModel
+                                              .beatStatusList[index]
+                                              .value ==
+                                              true ? Colors.amberAccent
+                                          : ThemeData.dark().canvasColor,
+                                      offset: Offset.fromDirection(11.0,5.0))],
                                       image: DecorationImage(
-                                        fit: BoxFit.fill,
+                                        colorFilter: ColorFilter.mode(Colors.deepOrange, BlendMode.plus),
+                                        fit: BoxFit.fitHeight,
                                         image: addictiveMetronomeModel
                                                         .beatStatusList[index]
                                                         .value ==
@@ -63,7 +67,7 @@ class AddictiveMetronomePage extends StatelessWidget {
                                                 "assets/greenBlock.png")
                                             : AssetImage("assets/redBlock.png"),
                                       ),
-                                      border: Border.all(color: Colors.white54),
+                                      border: Border.all(color: Colors.amber),
                                       borderRadius: BorderRadiusGeometry.lerp(
                                           BorderRadius.circular(10),
                                           BorderRadius.circular(10),
@@ -97,9 +101,9 @@ class AddictiveMetronomePage extends StatelessWidget {
                                     color: addictiveMetronomeModel
                                                 .beatCounter.value ==
                                             index
-                                        ? Colors.grey
+                                        ? Colors.amberAccent
                                         : Colors.transparent,
-                                    border: Border.all(color: Colors.white54),
+                                    border: Border.all(color: Colors.amber),
                                     borderRadius: BorderRadiusGeometry.lerp(
                                         BorderRadius.circular(10),
                                         BorderRadius.circular(10),
@@ -117,37 +121,45 @@ class AddictiveMetronomePage extends StatelessWidget {
             ),
             Divider(
               height: 10.0,
-              color: Colors.grey,
+              color: Colors.amber,
             ),
             Center(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  ElevatedButton(
-                      onPressed: () => addictiveMetronomeModel.switchOnOff(),
-                      child: Text("ON/OFF")),
-                  SleekCircularSlider(
-                    appearance: CircularSliderAppearance(
-                      infoProperties: InfoProperties(
-                          modifier: percentageModifier,
-                          bottomLabelText: "BPM",
-                          mainLabelStyle: TextStyle(color: Colors.redAccent)),
+                  Container(
+                    height: _height / 5,
+                    child:  GestureDetector(
+                        onTap: () => addictiveMetronomeModel.switchOnOff(),
+                        child: Neon(
+                          glowing: true,
+                          text: "ON/OFF",
+                          font: NeonFont.Monoton,
+                          color: Colors.amber,
+                        ),
+                      ),
                     ),
-                    min: 40,
-                    max: 240,
-                    initialValue:
-                        addictiveMetronomeModel.tempoInBpm.value.toDouble(),
-                    onChangeEnd: (double endValue) {
-                      addictiveMetronomeModel
-                          .updateTempoInBpm(endValue.toInt());
-                    },
-                  ),
-                  ElevatedButton(
-                      onPressed: () => addictiveMetronomeModel.removeBeat(),
-                      child: Text("-")),
-                  ElevatedButton(
-                      onPressed: () => addictiveMetronomeModel.addBeat(),
-                      child: Text("+")),
+// horizontal picker
+                  bpmPicker(_width, _height),
+                  GestureDetector(
+                      onTap: () => addictiveMetronomeModel.removeBeat(),
+                      child: Neon(
+                        fontSize: 60,
+                        glowing: true,
+                        text: "-",
+                        font: NeonFont.Monoton,
+                        color: Colors.amber,
+                      ),),
+                  GestureDetector(
+                      onTap: () => addictiveMetronomeModel.addBeat(),
+                      child: Neon(
+                        fontSize: 60,
+                        glowing: true,
+                        text: "+",
+                        font: NeonFont.Monoton,
+                        color: Colors.amber,
+                      ),),
                 ],
               ),
             ),
@@ -157,5 +169,25 @@ class AddictiveMetronomePage extends StatelessWidget {
         //  FloatingActionButton(onPressed:()=> addictiveMetronomeModel.switchOnOff(), child: Text("Switch on/off")),
       ],
     );
+  }
+
+  Widget bpmPicker(double width,double height){
+    return GetBuilder(
+        init: AddictiveMetronomeModel(),
+        builder: (v) => SizedBox(
+          width: width / 3,
+          height: height / 3,
+          child: HorizontalPicker(
+              minValue: 40,
+              maxValue: 240,
+              divisions: 40,
+              height: 50.0,
+              showCursor: false,
+              backgroundColor: Colors.transparent,
+              activeItemTextColor: Colors.white,
+              passiveItemsTextColor: Colors.amber,
+              onChanged: (newTempo) => addictiveMetronomeModel
+                  .updateTempoInBpm(newTempo.toInt())),
+        ));
   }
 }
