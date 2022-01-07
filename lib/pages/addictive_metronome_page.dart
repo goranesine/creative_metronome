@@ -28,12 +28,12 @@ class AddictiveMetronomePage extends StatelessWidget {
           children: [
             Row(
               children: [
-                Container(
-                  width: _width,
-                  height: _height / 2,
-                  child: GetBuilder(
-                    init: AddictiveMetronomeModel(),
-                    builder: (value) => ListView.builder(
+                GetBuilder(
+                  init: AddictiveMetronomeModel(),
+                  builder: (value) => Container(
+                    width: _width,
+                    height: _height / 2,
+                    child: ListView.builder(
                         scrollDirection: Axis.horizontal,
                         itemCount:
                             addictiveMetronomeModel.beatStatusList.length,
@@ -44,30 +44,22 @@ class AddictiveMetronomePage extends StatelessWidget {
                                     .setBeatAccent(index),
                                 child: Container(
                                   decoration: BoxDecoration(
-                                      boxShadow: [BoxShadow(
-                                        blurRadius: 10.0,
-                                          spreadRadius: 8.0,
-                                          color:addictiveMetronomeModel
-                                              .beatStatusList[index]
-                                              .value ==
-                                              true ? Colors.amberAccent
-                                          : ThemeData.dark().canvasColor,
-                                      offset: Offset.fromDirection(11.0,5.0))],
-                                      image: DecorationImage(
-                                        colorFilter: ColorFilter.mode(Colors.deepOrange, BlendMode.plus),
-                                        fit: BoxFit.fitHeight,
-                                        image: addictiveMetronomeModel
+                                      boxShadow: [
+                                        BoxShadow(
+                                            blurRadius: 10.0,
+                                            spreadRadius: 8.0,
+                                            color: addictiveMetronomeModel
                                                         .beatStatusList[index]
                                                         .value ==
-                                                    true &&
-                                                addictiveMetronomeModel
-                                                        .beatCounter.value ==
-                                                    index
-                                            ? AssetImage(
-                                                "assets/greenBlock.png")
-                                            : AssetImage("assets/redBlock.png"),
-                                      ),
-                                      border: Border.all(color: Colors.amber),
+                                                    true
+                                                ? Colors.amberAccent
+                                                : ThemeData.dark().canvasColor,
+                                            offset:
+                                                Offset.fromDirection(11.0, 5.0))
+                                      ],
+
+                                      border: Border.all(color: Colors.amberAccent),
+
                                       borderRadius: BorderRadiusGeometry.lerp(
                                           BorderRadius.circular(10),
                                           BorderRadius.circular(10),
@@ -83,6 +75,9 @@ class AddictiveMetronomePage extends StatelessWidget {
                 )
               ],
             ),
+
+            // step lights
+
             Row(
               children: [
                 Container(
@@ -123,43 +118,52 @@ class AddictiveMetronomePage extends StatelessWidget {
               height: 10.0,
               color: Colors.amber,
             ),
+
+            // control panel
             Center(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
+                  // on/off
                   Container(
                     height: _height / 5,
-                    child:  GestureDetector(
-                        onTap: () => addictiveMetronomeModel.switchOnOff(),
-                        child: Neon(
-                          glowing: true,
-                          text: "ON/OFF",
-                          font: NeonFont.Monoton,
-                          color: Colors.amber,
-                        ),
+                    child: GestureDetector(
+                      onTap: () => addictiveMetronomeModel.switchOnOff(),
+                      child: Neon(
+                        //   glowing: true,
+                        text: "ON/OFF",
+                        font: NeonFont.Monoton,
+                        color: Colors.amber,
                       ),
                     ),
+                  ),
 // horizontal picker
                   bpmPicker(_width, _height),
+
+                  // remove ber
                   GestureDetector(
-                      onTap: () => addictiveMetronomeModel.removeBeat(),
-                      child: Neon(
-                        fontSize: 60,
-                        glowing: true,
-                        text: "-",
-                        font: NeonFont.Monoton,
-                        color: Colors.amber,
-                      ),),
+                    onTap: () => addictiveMetronomeModel.removeBeat(),
+                    child: Neon(
+                      fontSize: 60,
+                      //    glowing: true,
+                      text: "-",
+                      font: NeonFont.Monoton,
+                      color: Colors.amber,
+                    ),
+                  ),
+                  // add ber
+
                   GestureDetector(
-                      onTap: () => addictiveMetronomeModel.addBeat(),
-                      child: Neon(
-                        fontSize: 60,
-                        glowing: true,
-                        text: "+",
-                        font: NeonFont.Monoton,
-                        color: Colors.amber,
-                      ),),
+                    onTap: () => addictiveMetronomeModel.addBeat(),
+                    child: Neon(
+                      fontSize: 60,
+                      //  glowing: true,
+                      text: "+",
+                      font: NeonFont.Monoton,
+                      color: Colors.amber,
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -171,23 +175,23 @@ class AddictiveMetronomePage extends StatelessWidget {
     );
   }
 
-  Widget bpmPicker(double width,double height){
+  Widget bpmPicker(double width, double height) {
     return GetBuilder(
         init: AddictiveMetronomeModel(),
         builder: (v) => SizedBox(
-          width: width / 3,
-          height: height / 3,
-          child: HorizontalPicker(
-              minValue: 40,
-              maxValue: 240,
-              divisions: 40,
-              height: 50.0,
-              showCursor: false,
-              backgroundColor: Colors.transparent,
-              activeItemTextColor: Colors.white,
-              passiveItemsTextColor: Colors.amber,
-              onChanged: (newTempo) => addictiveMetronomeModel
-                  .updateTempoInBpm(newTempo.toInt())),
-        ));
+              width: width / 3,
+              height: height / 3,
+              child: HorizontalPicker(
+                  minValue: 40,
+                  maxValue: 240,
+                  divisions: 40,
+                  height: 50.0,
+                  showCursor: false,
+                  backgroundColor: Colors.transparent,
+                  activeItemTextColor: Colors.white,
+                  passiveItemsTextColor: Colors.amber,
+                  onChanged: (newTempo) => addictiveMetronomeModel
+                      .updateTempoInBpm(newTempo.toInt())),
+            ));
   }
 }
