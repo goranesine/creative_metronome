@@ -34,12 +34,14 @@ class AudioService extends GetxController {
   }
 
   void playAccent() async {
-    await player.play(playerOnePlaySounds.first, mode: PlayerMode.LOW_LATENCY);
+      await player.play(playerOnePlaySounds.first, mode: PlayerMode.LOW_LATENCY);
+
   }
 
   void playDownNote() async {
-    await player.play(playerOnePlaySounds.last, mode: PlayerMode.LOW_LATENCY);
-  }
+      await player.play(playerOnePlaySounds.last, mode: PlayerMode.LOW_LATENCY);
+
+   }
 
   @override
   void dispose() {

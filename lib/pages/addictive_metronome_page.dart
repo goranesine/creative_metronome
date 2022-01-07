@@ -11,7 +11,11 @@ import 'package:neon/neon.dart';
 
 class AddictiveMetronomePage extends StatelessWidget {
   final addictiveMetronomeModel = Get.find<AddictiveMetronomeModel>();
-
+final _textStyle = TextStyle(
+  color: Colors.amber,
+  fontSize: 40,
+  fontWeight: FontWeight.bold,
+);
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft]);
@@ -46,19 +50,21 @@ class AddictiveMetronomePage extends StatelessWidget {
                                   decoration: BoxDecoration(
                                       boxShadow: [
                                         BoxShadow(
-                                            blurRadius: 10.0,
-                                            spreadRadius: 8.0,
+                                          //  blurRadius: 5.0,
+                                         //   spreadRadius: 1.0,
                                             color: addictiveMetronomeModel
                                                         .beatStatusList[index]
                                                         .value ==
                                                     true
-                                                ? Colors.amberAccent
+                                                ? Colors.amber
                                                 : ThemeData.dark().canvasColor,
-                                            offset:
-                                                Offset.fromDirection(11.0, 5.0))
+                                          //  offset: Offset.fromDirection(11.0, 5.0)
+                                        )
                                       ],
 
-                                      border: Border.all(color: Colors.amberAccent),
+                                      border: Border.all(
+                                          width: 10,
+                                          color: Colors.amber),
 
                                       borderRadius: BorderRadiusGeometry.lerp(
                                           BorderRadius.circular(10),
@@ -96,9 +102,9 @@ class AddictiveMetronomePage extends StatelessWidget {
                                     color: addictiveMetronomeModel
                                                 .beatCounter.value ==
                                             index
-                                        ? Colors.amberAccent
+                                        ? Colors.amber
                                         : Colors.transparent,
-                                    border: Border.all(color: Colors.amber),
+                                    border: Border.all(color: Colors.amber,width: 5.0),
                                     borderRadius: BorderRadiusGeometry.lerp(
                                         BorderRadius.circular(10),
                                         BorderRadius.circular(10),
@@ -115,6 +121,7 @@ class AddictiveMetronomePage extends StatelessWidget {
               ],
             ),
             Divider(
+              thickness: 5.0,
               height: 10.0,
               color: Colors.amber,
             ),
@@ -126,17 +133,9 @@ class AddictiveMetronomePage extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   // on/off
-                  Container(
-                    height: _height / 5,
-                    child: GestureDetector(
-                      onTap: () => addictiveMetronomeModel.switchOnOff(),
-                      child: Neon(
-                        //   glowing: true,
-                        text: "ON/OFF",
-                        font: NeonFont.Monoton,
-                        color: Colors.amber,
-                      ),
-                    ),
+                  GestureDetector(
+                    onTap: () => addictiveMetronomeModel.switchOnOff(),
+                    child: Text("ON/OFF",style: _textStyle,),
                   ),
 // horizontal picker
                   bpmPicker(_width, _height),
@@ -144,28 +143,30 @@ class AddictiveMetronomePage extends StatelessWidget {
                   // remove ber
                   GestureDetector(
                     onTap: () => addictiveMetronomeModel.removeBeat(),
-                    child: Neon(
-                      fontSize: 60,
-                      //    glowing: true,
-                      text: "-",
-                      font: NeonFont.Monoton,
+                    child: Icon(
+                      Icons.remove_circle,
                       color: Colors.amber,
+                      size: 50.0,
                     ),
                   ),
                   // add ber
 
                   GestureDetector(
                     onTap: () => addictiveMetronomeModel.addBeat(),
-                    child: Neon(
-                      fontSize: 60,
-                      //  glowing: true,
-                      text: "+",
-                      font: NeonFont.Monoton,
+                    child: Icon(
+                      Icons.add_circle,
                       color: Colors.amber,
+                      size: 50.0,
                     ),
                   ),
                 ],
               ),
+            ),
+
+            Divider(
+              thickness: 5.0,
+              height: 0.0,
+              color: Colors.amber,
             ),
           ],
         ),
