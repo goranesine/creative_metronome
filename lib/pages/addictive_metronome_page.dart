@@ -28,6 +28,13 @@ final _textStyle = TextStyle(
     double _height = MediaQuery.of(context).size.height;
     return Stack(
       children: [
+        Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(image: AssetImage("assets/sky.jpg"),fit: BoxFit.cover),
+          ),
+            width: _width,
+            height: _height,
+           ),
         Column(
           children: [
             Row(
@@ -57,7 +64,7 @@ final _textStyle = TextStyle(
                                                         .value ==
                                                     true
                                                 ? Colors.amber
-                                                : ThemeData.dark().canvasColor,
+                                                : Colors.transparent,
                                           //  offset: Offset.fromDirection(11.0, 5.0)
                                         )
                                       ],
@@ -183,11 +190,13 @@ final _textStyle = TextStyle(
               width: width / 3,
               height: height / 3,
               child: HorizontalPicker(
+                initialPosition: InitialPosition.center,
                   minValue: 40,
                   maxValue: 240,
                   divisions: 40,
-                  height: 50.0,
+                  height: 10.0,
                   showCursor: false,
+
                   backgroundColor: Colors.transparent,
                   activeItemTextColor: Colors.white,
                   passiveItemsTextColor: Colors.amber,
