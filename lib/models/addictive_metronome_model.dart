@@ -11,12 +11,16 @@ class AddictiveMetronomeModel extends GetxController {
   Duration beatDurationInMilliseconds = Duration();
   RxList<RxBool> beatStatusList =
       <RxBool>[RxBool(true), RxBool(false), RxBool(false), RxBool(false)].obs;
-
+RxInt listLength = 4.obs;
   AddictiveMetronomeModel() {
     beatCounter.value = -1;
     calculateBeatDurationInMilliseconds();
   }
 
+  void getListLength(){
+    listLength.value = beatStatusList.length;
+    update();
+  }
 
 
   void addBeat() {
@@ -25,6 +29,7 @@ class AddictiveMetronomeModel extends GetxController {
   //    beatCounter = 0;
 
       update();
+      getListLength();
       calculateBeatDurationInMilliseconds();
     }
   }
@@ -35,6 +40,7 @@ class AddictiveMetronomeModel extends GetxController {
    //   beatCounter = 0;
 
       update();
+      getListLength();
       calculateBeatDurationInMilliseconds();
     }
   }

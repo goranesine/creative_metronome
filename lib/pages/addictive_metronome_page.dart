@@ -7,6 +7,7 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:math_game/models/addictive_metronome_model.dart';
 import 'package:horizontal_picker/horizontal_picker.dart';
+import 'package:math_game/widgets/stateful_beat.dart';
 import 'package:neon/neon.dart';
 
 class AddictiveMetronomePage extends StatelessWidget {
@@ -27,6 +28,8 @@ class AddictiveMetronomePage extends StatelessWidget {
 
     double _width = MediaQuery.of(context).size.width;
     double _height = MediaQuery.of(context).size.height;
+    int _listLength = 4;
+
     return Stack(
       children: [
         Container(
@@ -41,41 +44,16 @@ class AddictiveMetronomePage extends StatelessWidget {
           children: [
             Row(
               children: [
-                GetBuilder(
-                  init: AddictiveMetronomeModel(),
-                  builder: (value) => SizedBox(
-                    width: _width,
-                    height: _height / 2,
-                    child: ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount:
-                            addictiveMetronomeModel.beatStatusList.length,
-                        itemBuilder: (BuildContext context, index) => Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: GestureDetector(
-                                onLongPressDown: (v) => addictiveMetronomeModel
-                                    .setBeatAccent(index),
-                                child: Container(
-
-                                  decoration: BoxDecoration(
-                                      color: addictiveMetronomeModel
-                                          .beatStatusList[index].value ==
-                                          true
-                                          ? Colors.amber
-                                          : Colors.transparent,
-                                      border: Border.all(
-                                          width: 10, color: Colors.amber),
-                                      borderRadius: BorderRadiusGeometry.lerp(
-                                          BorderRadius.circular(10),
-                                          BorderRadius.circular(10),
-                                          100.0)),
-                                  width: _width /
-                                          addictiveMetronomeModel
-                                              .beatStatusList.length -
-                                      16,
-                                ),
-                              ),
-                            )),
+                SizedBox(
+                  width: _width,
+                  height: _height / 2,
+                  child: Obx(
+                    () => ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: addictiveMetronomeModel.listLength.value,
+                      itemBuilder: (BuildContext context, index) =>
+                          StateFulBeat(_width, index),
+                    ),
                   ),
                 )
               ],
