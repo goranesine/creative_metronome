@@ -11,11 +11,12 @@ import 'package:neon/neon.dart';
 
 class AddictiveMetronomePage extends StatelessWidget {
   final addictiveMetronomeModel = Get.find<AddictiveMetronomeModel>();
-final _textStyle = TextStyle(
-  color: Colors.amber,
-  fontSize: 40,
-  fontWeight: FontWeight.bold,
-);
+  final _textStyle = TextStyle(
+    color: Colors.amber,
+    fontSize: 40,
+    fontWeight: FontWeight.bold,
+  );
+
   @override
   Widget build(BuildContext context) {
     SystemChrome.setPreferredOrientations([DeviceOrientation.landscapeLeft]);
@@ -30,18 +31,19 @@ final _textStyle = TextStyle(
       children: [
         Container(
           decoration: BoxDecoration(
-            image: DecorationImage(image: AssetImage("assets/sky.jpg"),fit: BoxFit.cover),
+            image: DecorationImage(
+                image: AssetImage("assets/sky.jpg"), fit: BoxFit.cover),
           ),
-            width: _width,
-            height: _height,
-           ),
+          width: _width,
+          height: _height,
+        ),
         Column(
           children: [
             Row(
               children: [
                 GetBuilder(
                   init: AddictiveMetronomeModel(),
-                  builder: (value) => Container(
+                  builder: (value) => SizedBox(
                     width: _width,
                     height: _height / 2,
                     child: ListView.builder(
@@ -54,25 +56,15 @@ final _textStyle = TextStyle(
                                 onLongPressDown: (v) => addictiveMetronomeModel
                                     .setBeatAccent(index),
                                 child: Container(
+
                                   decoration: BoxDecoration(
-                                      boxShadow: [
-                                        BoxShadow(
-                                          //  blurRadius: 5.0,
-                                         //   spreadRadius: 1.0,
-                                            color: addictiveMetronomeModel
-                                                        .beatStatusList[index]
-                                                        .value ==
-                                                    true
-                                                ? Colors.amber
-                                                : Colors.transparent,
-                                          //  offset: Offset.fromDirection(11.0, 5.0)
-                                        )
-                                      ],
-
+                                      color: addictiveMetronomeModel
+                                          .beatStatusList[index].value ==
+                                          true
+                                          ? Colors.amber
+                                          : Colors.transparent,
                                       border: Border.all(
-                                          width: 10,
-                                          color: Colors.amber),
-
+                                          width: 10, color: Colors.amber),
                                       borderRadius: BorderRadiusGeometry.lerp(
                                           BorderRadius.circular(10),
                                           BorderRadius.circular(10),
@@ -93,7 +85,7 @@ final _textStyle = TextStyle(
 
             Row(
               children: [
-                Container(
+                SizedBox(
                   height: _height / 10,
                   width: _width,
                   child: GetBuilder(
@@ -111,7 +103,8 @@ final _textStyle = TextStyle(
                                             index
                                         ? Colors.amber
                                         : Colors.transparent,
-                                    border: Border.all(color: Colors.amber,width: 5.0),
+                                    border: Border.all(
+                                        color: Colors.amber, width: 5.0),
                                     borderRadius: BorderRadiusGeometry.lerp(
                                         BorderRadius.circular(10),
                                         BorderRadius.circular(10),
@@ -142,7 +135,10 @@ final _textStyle = TextStyle(
                   // on/off
                   GestureDetector(
                     onTap: () => addictiveMetronomeModel.switchOnOff(),
-                    child: Text("ON/OFF",style: _textStyle,),
+                    child: Text(
+                      "ON/OFF",
+                      style: _textStyle,
+                    ),
                   ),
 // horizontal picker
                   bpmPicker(_width, _height),
@@ -190,13 +186,12 @@ final _textStyle = TextStyle(
               width: width / 3,
               height: height / 3,
               child: HorizontalPicker(
-                initialPosition: InitialPosition.center,
+                  initialPosition: InitialPosition.center,
                   minValue: 40,
                   maxValue: 240,
                   divisions: 40,
                   height: 10.0,
                   showCursor: false,
-
                   backgroundColor: Colors.transparent,
                   activeItemTextColor: Colors.white,
                   passiveItemsTextColor: Colors.amber,
