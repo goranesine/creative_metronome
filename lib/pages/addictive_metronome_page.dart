@@ -148,8 +148,8 @@ class AddictiveMetronomePage extends StatelessWidget {
               child: HorizontalPicker(
                   initialPosition: InitialPosition.center,
                   minValue: 40,
-                  maxValue: 240,
-                  divisions: 40,
+                  maxValue: 300,
+                  divisions: 52,
                   height: 10.0,
                   showCursor: false,
                   backgroundColor: Colors.transparent,

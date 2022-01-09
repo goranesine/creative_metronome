@@ -11,22 +11,28 @@ class AddictiveMetronomeModel extends GetxController {
   Duration beatDurationInMilliseconds = Duration();
   RxList<RxBool> beatStatusList =
       <RxBool>[RxBool(true), RxBool(false), RxBool(false), RxBool(false)].obs;
-RxInt listLength = 4.obs;
+  RxInt listLength = 4.obs;
+
   AddictiveMetronomeModel() {
     beatCounter.value = -1;
     calculateBeatDurationInMilliseconds();
   }
 
-  void getListLength(){
+  void startAutomaticTimeIncreasment(){
+if(tempoInBpm.value <= 295){
+
+}
+  }
+
+  void getListLength() {
     listLength.value = beatStatusList.length;
     update();
   }
 
-
   void addBeat() {
     if (beatStatusList.length > 1 && beatStatusList.length < 8) {
       beatStatusList.add(RxBool(false));
-  //    beatCounter = 0;
+      //    beatCounter = 0;
 
       update();
       getListLength();
@@ -37,7 +43,7 @@ RxInt listLength = 4.obs;
   void removeBeat() {
     if (beatStatusList.length > 2) {
       beatStatusList.removeLast();
-   //   beatCounter = 0;
+      //   beatCounter = 0;
 
       update();
       getListLength();
@@ -45,20 +51,20 @@ RxInt listLength = 4.obs;
     }
   }
 
-  void setBeatAccent(int index){
-bool oldValue = beatStatusList[index].value;
-beatStatusList[index].value = !oldValue;
+  void setBeatAccent(int index) {
+    bool oldValue = beatStatusList[index].value;
+    beatStatusList[index].value = !oldValue;
     update();
   }
 
   void calculateBeatDurationInMilliseconds() {
-
-      beatDurationInMilliseconds = Duration(milliseconds: 60000.0 ~/ tempoInBpm.value);
-update();
+    beatDurationInMilliseconds =
+        Duration(milliseconds: 60000.0 ~/ tempoInBpm.value);
+    update();
   }
 
   void updateTempoInBpm(int newTempo) {
-    if (tempoInBpm.value >= 40 && tempoInBpm.value <= 240) {
+    if (tempoInBpm.value >= 40 && tempoInBpm.value <= 300) {
       tempoInBpm.value = newTempo;
       update();
       calculateBeatDurationInMilliseconds();
@@ -85,7 +91,7 @@ update();
   }
 
   void updateBeatCounter() {
-    if (beatCounter < beatStatusList.length-1) {
+    if (beatCounter < beatStatusList.length - 1) {
       beatCounter++;
       update();
       playSound();
@@ -97,7 +103,7 @@ update();
   }
 
   void playSound() {
-    beatStatusList[beatCounter.value ].value == true
+    beatStatusList[beatCounter.value].value == true
         ? audioService.playAccent()
         : audioService.playDownNote();
   }
