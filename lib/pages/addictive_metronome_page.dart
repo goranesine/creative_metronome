@@ -7,9 +7,10 @@ import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:math_game/models/addictive_metronome_model.dart';
 import 'package:horizontal_picker/horizontal_picker.dart';
+import 'package:math_game/widgets/automtic_bpm_increaser.dart';
+import 'package:math_game/widgets/bpm_picker.dart';
 import 'package:math_game/widgets/stateful_beat.dart';
 import 'package:math_game/widgets/step_sequencer.dart';
-import 'package:neon/neon.dart';
 
 class AddictiveMetronomePage extends StatelessWidget {
   final addictiveMetronomeModel = Get.find<AddictiveMetronomeModel>();
@@ -29,8 +30,7 @@ class AddictiveMetronomePage extends StatelessWidget {
 
     double _width = MediaQuery.of(context).size.width;
     double _height = MediaQuery.of(context).size.height;
-    int _listLength = 4;
-
+bool isMetronomeOnAutomatic = true;
     return Stack(
       children: [
         Container(
@@ -101,7 +101,8 @@ class AddictiveMetronomePage extends StatelessWidget {
                     ),
                   ),
 // horizontal picker
-                  bpmPicker(_width, _height),
+                 isMetronomeOnAutomatic == true
+                  ? AutomaticBpmIncreaser(_width,_height) : bpmPicker(_width, _height),
 
                   // remove ber
                   GestureDetector(
@@ -139,24 +140,5 @@ class AddictiveMetronomePage extends StatelessWidget {
     );
   }
 
-  Widget bpmPicker(double width, double height) {
-    return GetBuilder(
-        init: AddictiveMetronomeModel(),
-        builder: (v) => SizedBox(
-              width: width / 3,
-              height: height / 3,
-              child: HorizontalPicker(
-                  initialPosition: InitialPosition.center,
-                  minValue: 40,
-                  maxValue: 300,
-                  divisions: 52,
-                  height: 10.0,
-                  showCursor: false,
-                  backgroundColor: Colors.transparent,
-                  activeItemTextColor: Colors.white,
-                  passiveItemsTextColor: Colors.amber,
-                  onChanged: (newTempo) => addictiveMetronomeModel
-                      .updateTempoInBpm(newTempo.toInt())),
-            ));
-  }
+
 }

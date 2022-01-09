@@ -9,7 +9,6 @@ import 'package:get/get.dart';
 import 'package:math_game/models/metronome_model.dart';
 import 'package:math_game/services/audio_sevice.dart';
 import 'package:math_game/widgets/custom_delegate.dart';
-import 'package:neon/neon.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 
 class CreativeMetronomePage extends StatefulWidget {
