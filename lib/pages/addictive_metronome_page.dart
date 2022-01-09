@@ -8,6 +8,7 @@ import 'package:get/get.dart';
 import 'package:math_game/models/addictive_metronome_model.dart';
 import 'package:horizontal_picker/horizontal_picker.dart';
 import 'package:math_game/widgets/stateful_beat.dart';
+import 'package:math_game/widgets/step_sequencer.dart';
 import 'package:neon/neon.dart';
 
 class AddictiveMetronomePage extends StatelessWidget {
@@ -66,35 +67,16 @@ class AddictiveMetronomePage extends StatelessWidget {
                 SizedBox(
                   height: _height / 10,
                   width: _width,
-                  child: GetBuilder(
-                    init: AddictiveMetronomeModel(),
-                    builder: (value) => ListView.builder(
-                        scrollDirection: Axis.horizontal,
-                        itemCount:
-                            addictiveMetronomeModel.beatStatusList.length,
-                        itemBuilder: (BuildContext context, index) => Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: Container(
-                                decoration: BoxDecoration(
-                                    color: addictiveMetronomeModel
-                                                .beatCounter.value ==
-                                            index
-                                        ? Colors.amber
-                                        : Colors.transparent,
-                                    border: Border.all(
-                                        color: Colors.amber, width: 5.0),
-                                    borderRadius: BorderRadiusGeometry.lerp(
-                                        BorderRadius.circular(10),
-                                        BorderRadius.circular(10),
-                                        100.0)),
-                                width: _width /
-                                        addictiveMetronomeModel
-                                            .beatStatusList.length -
-                                    16,
-                                //    height: _height/10,
-                              ),
-                            )),
+                  child: Obx(()=> ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount:
+                              addictiveMetronomeModel.listLength.value,
+                          itemBuilder: (BuildContext context, index) =>
+                      StepSequencer(
+                          index,_width,
+                         )),
                   ),
+
                 ),
               ],
             ),
