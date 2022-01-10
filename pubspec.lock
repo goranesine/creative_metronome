@@ -107,13 +107,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "4.3.8"
-  horizontal_picker:
-    dependency: "direct main"
-    description:
-      name: horizontal_picker
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "1.2.0"
   http:
     dependency: transitive
     description:

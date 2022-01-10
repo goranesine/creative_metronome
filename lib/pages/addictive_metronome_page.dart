@@ -2,11 +2,11 @@ import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:math_game/models/addictive_metronome_model.dart';
-import 'package:horizontal_picker/horizontal_picker.dart';
 import 'package:math_game/widgets/automtic_bpm_increaser.dart';
 import 'package:math_game/widgets/bpm_picker.dart';
 import 'package:math_game/widgets/stateful_beat.dart';
@@ -101,7 +101,7 @@ bool isMetronomeOnAutomatic = true;
                     ),
                   ),
 // horizontal picker
-                 isMetronomeOnAutomatic == true
+                 isMetronomeOnAutomatic == false
                   ? AutomaticBpmIncreaser(_width,_height) : bpmPicker(_width, _height),
 
                   // remove ber

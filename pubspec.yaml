@@ -28,7 +28,7 @@ dependencies:
  # animated_text_kit: ^4.2.1
   wakelock: ^0.5.6
   sleek_circular_slider: ^2.0.1
-  horizontal_picker: ^1.2.0
+ # horizontal_picker: ^1.2.0
   numberpicker: ^2.1.1
 
   # The following adds the Cupertino Icons font to your application.

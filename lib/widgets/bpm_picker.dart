@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:horizontal_picker/horizontal_picker.dart';
 import 'package:math_game/models/addictive_metronome_model.dart';
+import 'package:math_game/widgets/horizontal_picker.dart';
 
 Widget bpmPicker(double width, double height) {
   final addictiveMetronomeModel = Get.find<AddictiveMetronomeModel>();
 
-  return GetBuilder(
-      init: AddictiveMetronomeModel(),
-      builder: (v) => SizedBox(
+  return SizedBox(
         width: width / 3,
         height: height / 3,
         child: HorizontalPicker(
-            initialPosition: InitialPosition.center,
+          initialValue: 120,
             minValue: 40,
             maxValue: 300,
             divisions: 52,
@@ -23,5 +21,5 @@ Widget bpmPicker(double width, double height) {
             passiveItemsTextColor: Colors.amber,
             onChanged: (newTempo) => addictiveMetronomeModel
                 .updateTempoInBpm(newTempo.toInt())),
-      ));
+      );
 }
