@@ -7,7 +7,6 @@ import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:math_game/models/addictive_metronome_model.dart';
-import 'package:math_game/widgets/automtic_bpm_increaser.dart';
 import 'package:math_game/widgets/bpm_picker.dart';
 import 'package:math_game/widgets/stateful_beat.dart';
 import 'package:math_game/widgets/step_sequencer.dart';
@@ -102,12 +101,28 @@ bool isMetronomeOnAutomatic = true;
                     ),
                   ),
 /// space for switch
-                  SizedBox(
-                    width: (_width/10)*2,
+                  Obx(()=>
+                    GestureDetector(
+                      onTap: ()=> addictiveMetronomeModel.automaticIncreaserOnOff(),
+                      child: Icon(
+               addictiveMetronomeModel.isAutomaticIncreaserOn.value == true
+                        ? Icons.brightness_auto
+               : Icons.brightness_auto_outlined,
+                        color: Colors.amber,
+                        size: 50.0,),
+                    ),
                   ),
 /// horizontal picker
-                 isMetronomeOnAutomatic == false
-                  ? AutomaticBpmIncreaser(_width,_height) : bpmPicker(_width, _height),
+                  Obx(()=> addictiveMetronomeModel.isAutomaticIncreaserOn.value == false
+                  ? bpmPicker(_width,_height)
+                  : Container(
+                    height: _height/3,
+                    child: Center(
+                      child: Text(addictiveMetronomeModel.tempoInBpm.value.toString(),
+                      style: _textStyle,),
+                    ),
+                  )),
+
 
                   // remove ber
                   GestureDetector(
@@ -139,27 +154,7 @@ bool isMetronomeOnAutomatic = true;
             ),
           ],
         ),
-        Positioned(
-          top:(_height/10)*7.5,
-          left: (_width/10)*2.5,
-          child: ToggleSwitch(
-        //    minHeight: 100.0,
-           //   minHeight: 100.0,
-           //     fontSize: 100.0,
-            inactiveBgColor: Colors.transparent,
-            activeFgColor: Colors.amber,
-            activeBgColor: [Colors.transparent],
-            initialLabelIndex: 0,
-            totalSwitches: 2,
-            //   labels: ['M', 'A'],
-            icons: [Icons.stop_circle_outlined,Icons.play_circle_outline],
-            iconSize: 50.0,
-            onToggle: (index) {
-              addictiveMetronomeModel.automaticIncreaserOnOff();
-            },
-          ),
-        ),
-        //  FloatingActionButton(onPressed:()=> addictiveMetronomeModel.switchOnOff(), child: Text("Switch on/off")),
+
       ],
     );
   }
