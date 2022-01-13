@@ -23,13 +23,16 @@ class AudioService extends GetxController {
 
   AudioService() {
    playAtInitWithMutedSound();
-  //  player.loadAll([playerOnePlaySounds.first]);
-    //   playBackgroundMusic();
+
   }
 
   void playAtInitWithMutedSound() async {
     await player.play(playerOnePlaySounds.first, mode: PlayerMode.LOW_LATENCY,volume: 0.0);
     await player.play(playerOnePlaySounds.last, mode: PlayerMode.LOW_LATENCY,volume: 0.0);
+
+  }
+  void playTempoChange() async {
+    await player.play("playerFreezed.wav", mode: PlayerMode.LOW_LATENCY);
 
   }
 

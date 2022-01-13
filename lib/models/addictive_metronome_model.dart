@@ -12,22 +12,34 @@ class AddictiveMetronomeModel extends GetxController {
   RxList<RxBool> beatStatusList =
       <RxBool>[RxBool(true), RxBool(false), RxBool(false), RxBool(false)].obs;
   RxInt listLength = 4.obs;
+  RxBool isAutomaticIncreaserOn = false.obs;
+  RxInt barCounter = 0.obs;
 
   AddictiveMetronomeModel() {
     beatCounter.value = -1;
     calculateBeatDurationInMilliseconds();
-    testTempoChange();
+    //  testTempoChange();
   }
 
-  void testTempoChange(){
-    Timer(Duration(seconds: 10),()=> updateTempoInBpm(180) );
+  void testTempoChange() {
+    Timer(Duration(seconds: 10), () => updateTempoInBpm(180));
     update();
   }
 
-  void startAutomaticTimeIncreasment(){
-if(tempoInBpm.value <= 295){
+  void automaticIncreaserOnOff() {
+    isAutomaticIncreaserOn.value = !isAutomaticIncreaserOn.value;
+    barCounter.value = 0;
+    update();
+  }
 
-}
+  void startAutomaticTimeIncreasment() {
+    if (tempoInBpm.value <= 295 && isAutomaticIncreaserOn.value == true) {
+      audioService.playTempoChange();
+      tempoInBpm.value = tempoInBpm.value + 5;
+      barCounter.value = 0;
+      update();
+      calculateBeatDurationInMilliseconds();
+    }
   }
 
   void getListLength() {
@@ -38,7 +50,7 @@ if(tempoInBpm.value <= 295){
   void addBeat() {
     if (beatStatusList.length > 1 && beatStatusList.length < 8) {
       beatStatusList.add(RxBool(false));
-      //    beatCounter = 0;
+      barCounter.value = 0;
 
       update();
       getListLength();
@@ -49,7 +61,7 @@ if(tempoInBpm.value <= 295){
   void removeBeat() {
     if (beatStatusList.length > 2) {
       beatStatusList.removeLast();
-      //   beatCounter = 0;
+      barCounter.value = 0;
 
       update();
       getListLength();
@@ -79,12 +91,14 @@ if(tempoInBpm.value <= 295){
 
   void switchOnOff() {
     if (isMetronomePlaying.value == false) {
+      barCounter.value = 0;
       isMetronomePlaying.value = true;
       update();
       initMetronome();
     } else {
       isMetronomePlaying.value = false;
       beatCounter.value = -1;
+      barCounter.value = 0;
 
       update();
     }
@@ -93,6 +107,7 @@ if(tempoInBpm.value <= 295){
   void initMetronome() {
     Timer(beatDurationInMilliseconds,
         () => isMetronomePlaying.value == true ? initMetronome() : null);
+
     updateBeatCounter();
   }
 
@@ -102,13 +117,24 @@ if(tempoInBpm.value <= 295){
       update();
       playSound();
     } else {
+      barCounter.value > 4 ? barCounter.value = 0 : barCounter.value++;
+
       beatCounter.value = 0;
       update();
+
       playSound();
     }
   }
 
+  void updateBarCounter() {}
+
   void playSound() {
+    if (barCounter.value == 4) {
+      startAutomaticTimeIncreasment();
+    }
+    print("beatnumber:$beatCounter");
+    print("barcounter: $barCounter");
+    print("tempoinbpm$tempoInBpm");
     beatStatusList[beatCounter.value].value == true
         ? audioService.playAccent()
         : audioService.playDownNote();

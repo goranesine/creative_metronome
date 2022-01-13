@@ -11,6 +11,7 @@ import 'package:math_game/widgets/automtic_bpm_increaser.dart';
 import 'package:math_game/widgets/bpm_picker.dart';
 import 'package:math_game/widgets/stateful_beat.dart';
 import 'package:math_game/widgets/step_sequencer.dart';
+import 'package:toggle_switch/toggle_switch.dart';
 
 class AddictiveMetronomePage extends StatelessWidget {
   final addictiveMetronomeModel = Get.find<AddictiveMetronomeModel>();
@@ -100,7 +101,11 @@ bool isMetronomeOnAutomatic = true;
                       style: _textStyle,
                     ),
                   ),
-// horizontal picker
+/// space for switch
+                  SizedBox(
+                    width: (_width/10)*2,
+                  ),
+/// horizontal picker
                  isMetronomeOnAutomatic == false
                   ? AutomaticBpmIncreaser(_width,_height) : bpmPicker(_width, _height),
 
@@ -134,7 +139,26 @@ bool isMetronomeOnAutomatic = true;
             ),
           ],
         ),
-
+        Positioned(
+          top:(_height/10)*7.5,
+          left: (_width/10)*2.5,
+          child: ToggleSwitch(
+        //    minHeight: 100.0,
+           //   minHeight: 100.0,
+           //     fontSize: 100.0,
+            inactiveBgColor: Colors.transparent,
+            activeFgColor: Colors.amber,
+            activeBgColor: [Colors.transparent],
+            initialLabelIndex: 0,
+            totalSwitches: 2,
+            //   labels: ['M', 'A'],
+            icons: [Icons.stop_circle_outlined,Icons.play_circle_outline],
+            iconSize: 50.0,
+            onToggle: (index) {
+              addictiveMetronomeModel.automaticIncreaserOnOff();
+            },
+          ),
+        ),
         //  FloatingActionButton(onPressed:()=> addictiveMetronomeModel.switchOnOff(), child: Text("Switch on/off")),
       ],
     );
